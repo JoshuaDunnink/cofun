@@ -1,0 +1,59 @@
+---
+interface Props {
+  quote: string;
+  author?: string;
+  role?: string;
+  school?: string;
+}
+
+const { quote, author, role, school } = Astro.props;
+---
+
+<blockquote class="testimonial">
+  <p class="testimonial__quote">&ldquo;{quote}&rdquo;</p>
+  {(author || role || school) && (
+    <footer class="testimonial__footer">
+      {author && <cite class="testimonial__author">{author}</cite>}
+      {role && <span class="testimonial__role">{role}</span>}
+      {school && <span class="testimonial__school">{school}</span>}
+    </footer>
+  )}
+</blockquote>
+
+<style>
+  .testimonial {
+    background-color: var(--color-neutral-light);
+    border-left: 4px solid var(--color-primary-teal);
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    padding: var(--space-8);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .testimonial__quote {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-neutral-dark);
+    margin-bottom: var(--space-4);
+  }
+
+  .testimonial__footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .testimonial__author {
+    font-style: normal;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-dark);
+    font-size: var(--font-size-base);
+  }
+
+  .testimonial__role,
+  .testimonial__school {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+  }
+</style>

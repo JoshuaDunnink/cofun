@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionWrapper from '../../components/SectionWrapper.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import CTABlock from '../../components/CTABlock.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
+import { useTranslations } from '../../i18n/translations';
+
+const locale = 'en';
+const t = useTranslations(locale);
+---
+
+<BaseLayout title="The curriculum" locale={locale} description="A practical, evidence-based curriculum that equips teachers to guide gifted students through play.">
+  <Hero
+    title={t('hero.curriculum.title')}
+    subtitle={t('hero.curriculum.subtitle')}
+    variant="primary"
+  />
+
+  <SectionWrapper background="white" padding="lg">
+    <div class="content-section">
+      <h2>{t('curriculum.what.title')}</h2>
+      <p>{t('curriculum.what.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper background="light" padding="lg">
+    <h2 class="section-title">{t('curriculum.contains.title')}</h2>
+    <ul class="contains-list">
+      <li>{t('curriculum.contains.videos')}</li>
+      <li>{t('curriculum.contains.briefs')}</li>
+      <li>{t('curriculum.contains.games')}</li>
+      <li>{t('curriculum.contains.reflection')}</li>
+      <li>{t('curriculum.contains.guide')}</li>
+    </ul>
+  </SectionWrapper>
+
+  <SectionWrapper background="white" padding="md">
+    <div class="text-center">
+      <VideoEmbed placeholderText={t('video.placeholder')} />
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper background="white" padding="lg">
+    <div class="content-section">
+      <h2>{t('curriculum.who.title')}</h2>
+      <p>{t('curriculum.who.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper background="light" padding="xl">
+    <div class="card-grid">
+      <FeatureCard
+        title={t('curriculum.groups.12.title')}
+        description={t('curriculum.groups.12.text')}
+        icon="/images/icon-puzzle-heart_green_groepen1-2.png"
+        accentColor="green"
+      />
+      <FeatureCard
+        title={t('curriculum.groups.345.title')}
+        description={t('curriculum.groups.345.text')}
+        icon="/images/icon-puzzle-heart_yellow_groepen3-4-5.png"
+        accentColor="yellow"
+      />
+      <FeatureCard
+        title={t('curriculum.groups.678.title')}
+        description={t('curriculum.groups.678.text')}
+        icon="/images/icon-puzzle-heart_pink_groepen6-7-8.png"
+        accentColor="red"
+      />
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper background="white" padding="lg">
+    <h2 class="section-title">{t('curriculum.benefits.title')}</h2>
+    <ul class="benefits-list">
+      <li>{t('curriculum.benefit.1')}</li>
+      <li>{t('curriculum.benefit.2')}</li>
+      <li>{t('curriculum.benefit.3')}</li>
+      <li>{t('curriculum.benefit.4')}</li>
+      <li>{t('curriculum.benefit.5')}</li>
+    </ul>
+  </SectionWrapper>
+
+  <CTABlock
+    title={t('curriculum.cta.title')}
+    text={t('curriculum.cta.text')}
+    buttonText={t('curriculum.cta.button')}
+    buttonHref="/en/contact"
+  />
+</BaseLayout>
+
+<style>
+  .content-section {
+    max-width: var(--container-narrow);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary-teal);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-8);
+    color: var(--color-primary-teal);
+  }
+
+  .contains-list,
+  .benefits-list {
+    max-width: var(--container-narrow);
+    list-style: none;
+    padding: 0;
+  }
+
+  .contains-list li,
+  .benefits-list li {
+    position: relative;
+    padding-left: var(--space-8);
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .contains-list li::before,
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary-green);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xl);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .text-center {
+    display: flex;
+    justify-content: center;
+  }
+</style>

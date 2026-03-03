@@ -1,0 +1,200 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryHref?: string;
+  variant?: 'primary' | 'light' | 'dark';
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaHref,
+  ctaSecondaryText,
+  ctaSecondaryHref,
+  variant = 'primary',
+} = Astro.props;
+---
+
+<section class:list={['hero', `hero--${variant}`]}>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1 class="hero__title">{title}</h1>
+      {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+      {(ctaText || ctaSecondaryText) && (
+        <div class="hero__actions">
+          {ctaText && ctaHref && (
+            <a href={ctaHref} class="btn btn--primary btn--lg">{ctaText}</a>
+          )}
+          {ctaSecondaryText && ctaSecondaryHref && (
+            <a href={ctaSecondaryHref} class="btn btn--outline btn--lg">{ctaSecondaryText}</a>
+          )}
+        </div>
+      )}
+    </div>
+    <div class="hero__visual">
+      <img src="/images/icon-human-heart.png" alt="" class="hero__icon" width="280" height="280" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: var(--space-20) 0 var(--space-16);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero--primary {
+    background: linear-gradient(135deg, var(--color-primary-teal) 0%, var(--color-primary-teal-dark) 100%);
+    color: #fff;
+  }
+
+  .hero--light {
+    background-color: var(--color-neutral-light);
+    color: var(--color-neutral-dark);
+  }
+
+  .hero--dark {
+    background-color: var(--color-neutral-dark);
+    color: #fff;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .hero__title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-6);
+    color: inherit;
+  }
+
+  .hero--primary .hero__title {
+    color: #fff;
+  }
+
+  .hero__subtitle {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    opacity: 0.92;
+    max-width: 560px;
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero__visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__icon {
+    max-width: 280px;
+    height: auto;
+    opacity: 0.9;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  .btn--lg {
+    padding: var(--space-3) var(--space-8);
+    font-size: var(--font-size-base);
+  }
+
+  .btn--primary {
+    background-color: var(--color-secondary-yellow);
+    color: var(--color-neutral-dark);
+    border-color: var(--color-secondary-yellow);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-secondary-yellow-light);
+    border-color: var(--color-secondary-yellow-light);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn--outline {
+    background-color: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .hero--light .btn--outline {
+    color: var(--color-primary-teal);
+    border-color: var(--color-primary-teal);
+  }
+
+  .btn--outline:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    text-decoration: none;
+  }
+
+  .hero--light .btn--outline:hover {
+    background-color: var(--color-primary-teal);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--space-12) 0 var(--space-10);
+    }
+
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero__title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .hero__subtitle {
+      font-size: var(--font-size-lg);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
+    .hero__visual {
+      order: -1;
+    }
+
+    .hero__icon {
+      max-width: 180px;
+    }
+  }
+</style>

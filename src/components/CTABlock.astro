@@ -1,0 +1,87 @@
+---
+/**
+ * CTABlock — A standalone call‑to‑action section with heading, text, and button.
+ */
+import CTAButton from './CTAButton.astro';
+
+interface Props {
+  title: string;
+  text: string;
+  buttonText: string;
+  buttonHref: string;
+  background?: 'teal' | 'light' | 'dark';
+  buttonVariant?: 'primary' | 'secondary' | 'outline';
+}
+
+const {
+  title,
+  text,
+  buttonText,
+  buttonHref,
+  background = 'teal',
+  buttonVariant = 'primary',
+} = Astro.props;
+
+const bgMap: Record<string, string> = {
+  teal: 'var(--color-primary-teal)',
+  light: 'var(--color-neutral-light)',
+  dark: 'var(--color-neutral-dark)',
+};
+---
+
+<section class:list={['cta-block', `cta-block--${background}`]} style={`--cta-bg: ${bgMap[background]}`}>
+  <div class="container cta-block__inner">
+    <h2 class="cta-block__title">{title}</h2>
+    <p class="cta-block__text">{text}</p>
+    <CTAButton text={buttonText} href={buttonHref} variant={buttonVariant} size="lg" />
+  </div>
+</section>
+
+<style>
+  .cta-block {
+    padding: var(--space-16) 0;
+    background-color: var(--cta-bg, var(--color-primary-teal));
+    text-align: center;
+  }
+
+  .cta-block--teal,
+  .cta-block--dark {
+    color: #fff;
+  }
+
+  .cta-block__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .cta-block__title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: inherit;
+    margin-bottom: var(--space-2);
+  }
+
+  .cta-block--teal .cta-block__title,
+  .cta-block--dark .cta-block__title {
+    color: #fff;
+  }
+
+  .cta-block__text {
+    font-size: var(--font-size-lg);
+    max-width: 560px;
+    opacity: 0.92;
+    margin-bottom: var(--space-4);
+  }
+
+  @media (max-width: 768px) {
+    .cta-block {
+      padding: var(--space-12) 0;
+    }
+
+    .cta-block__title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>

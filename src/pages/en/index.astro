@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionWrapper from '../../components/SectionWrapper.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import CTABlock from '../../components/CTABlock.astro';
+import { useTranslations } from '../../i18n/translations';
+
+const locale = 'en';
+const t = useTranslations(locale);
+---
+
+<BaseLayout title="Home" locale={locale} description="CoFun helps schools get underperforming gifted students back on track — through play, insight and connection.">
+  <!-- Hero -->
+  <Hero
+    title={t('hero.home.title')}
+    subtitle={t('hero.home.subtitle')}
+    ctaText={t('hero.home.cta')}
+    ctaHref="/en/lespakket"
+    ctaSecondaryText={t('hero.home.cta_secondary')}
+    ctaSecondaryHref="/en/over-ons"
+  />
+
+  <!-- Problem -->
+  <SectionWrapper background="white" padding="lg">
+    <div class="two-col">
+      <div class="two-col__text">
+        <h2>{t('home.problem.title')}</h2>
+        <p>{t('home.problem.text')}</p>
+      </div>
+      <div class="two-col__visual">
+        <img src="/images/icon-puzzle-heart_pink_groepen6-7-8.png" alt="" width="200" height="200" loading="lazy" />
+      </div>
+    </div>
+  </SectionWrapper>
+
+  <!-- Solution -->
+  <SectionWrapper background="light" padding="lg">
+    <div class="two-col two-col--reverse">
+      <div class="two-col__text">
+        <h2>{t('home.solution.title')}</h2>
+        <p>{t('home.solution.text')}</p>
+      </div>
+      <div class="two-col__visual">
+        <img src="/images/icon-puzzle-heart_green_groepen1-2.png" alt="" width="200" height="200" loading="lazy" />
+      </div>
+    </div>
+  </SectionWrapper>
+
+  <!-- What is CoFun -->
+  <SectionWrapper background="white" padding="lg" narrow>
+    <div class="text-center">
+      <h2>{t('home.intro.title')}</h2>
+      <p style="margin: 0 auto;">{t('home.intro.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <!-- Features -->
+  <SectionWrapper background="light" padding="xl">
+    <div class="text-center" style="margin-bottom: var(--space-12);">
+      <h2>{t('home.features.title')}</h2>
+    </div>
+    <div class="card-grid">
+      <FeatureCard
+        title={t('home.feature.play.title')}
+        description={t('home.feature.play.text')}
+        icon="/images/icon-puzzle-heart_green_groepen1-2.png"
+        accentColor="green"
+      />
+      <FeatureCard
+        title={t('home.feature.insight.title')}
+        description={t('home.feature.insight.text')}
+        icon="/images/icon-puzzle-heart_yellow_groepen3-4-5.png"
+        accentColor="yellow"
+      />
+      <FeatureCard
+        title={t('home.feature.growth.title')}
+        description={t('home.feature.growth.text')}
+        icon="/images/icon-puzzle-heart_pink_groepen6-7-8.png"
+        accentColor="red"
+      />
+      <FeatureCard
+        title={t('home.feature.connection.title')}
+        description={t('home.feature.connection.text')}
+        icon="/images/icon-human-heart.png"
+        accentColor="teal"
+      />
+    </div>
+  </SectionWrapper>
+
+  <!-- CTA -->
+  <CTABlock
+    title={t('home.cta.title')}
+    text={t('home.cta.text')}
+    buttonText={t('home.cta.button')}
+    buttonHref="/en/contact"
+  />
+</BaseLayout>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .two-col--reverse {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .two-col--reverse .two-col__text {
+    order: 2;
+  }
+
+  .two-col--reverse .two-col__visual {
+    order: 1;
+  }
+
+  .two-col__visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .two-col__visual img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  .two-col__text h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-8);
+  }
+
+  @media (max-width: 768px) {
+    .two-col,
+    .two-col--reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .two-col--reverse .two-col__text {
+      order: 1;
+    }
+
+    .two-col--reverse .two-col__visual {
+      order: 2;
+    }
+
+    .two-col__visual img {
+      max-width: 160px;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+interface Props {
+  background?: 'light' | 'white' | 'teal' | 'dark';
+  padding?: 'sm' | 'md' | 'lg' | 'xl';
+  narrow?: boolean;
+  id?: string;
+}
+
+const { background = 'white', padding = 'lg', narrow = false, id } = Astro.props;
+
+const padMap: Record<string, string> = {
+  sm: 'var(--space-8)',
+  md: 'var(--space-12)',
+  lg: 'var(--space-16)',
+  xl: 'var(--space-20)',
+};
+
+const bgMap: Record<string, string> = {
+  light: 'var(--color-neutral-light)',
+  white: '#fff',
+  teal: 'var(--color-primary-teal)',
+  dark: 'var(--color-neutral-dark)',
+};
+---
+
+<section
+  class:list={['section-wrapper', `section--${background}`, { 'section--narrow': narrow }]}
+  style={`--section-pad: ${padMap[padding]}; --section-bg: ${bgMap[background]}`}
+  id={id}
+>
+  <div class:list={['container', { 'container--narrow': narrow }]}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section-wrapper {
+    padding: var(--section-pad, var(--space-16)) 0;
+    background-color: var(--section-bg, #fff);
+  }
+
+  .section--teal {
+    color: #fff;
+  }
+
+  .section--teal :global(h2),
+  .section--teal :global(h3),
+  .section--teal :global(h4) {
+    color: #fff;
+  }
+
+  .section--teal :global(p) {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .section--dark {
+    color: var(--color-neutral-200);
+  }
+
+  .section--dark :global(h2),
+  .section--dark :global(h3),
+  .section--dark :global(h4) {
+    color: #fff;
+  }
+</style>

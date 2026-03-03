@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionWrapper from '../components/SectionWrapper.astro';
+import { useTranslations } from '../i18n/translations';
+
+const locale = 'nl';
+const t = useTranslations(locale);
+---
+
+<BaseLayout title="Over ons" locale={locale}>
+  <Hero
+    title={t('hero.about.title')}
+    subtitle={t('hero.about.subtitle')}
+    variant="light"
+  />
+
+  <!-- Visie -->
+  <SectionWrapper background="white" padding="lg">
+    <div class="content-section">
+      <h2>{t('about.vision.title')}</h2>
+      <p>{t('about.vision.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <!-- Missie -->
+  <SectionWrapper background="light" padding="lg">
+    <div class="content-section">
+      <h2>{t('about.mission.title')}</h2>
+      <p>{t('about.mission.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <!-- Aanpak -->
+  <SectionWrapper background="white" padding="lg">
+    <div class="two-col">
+      <div class="two-col__text">
+        <h2>{t('about.approach.title')}</h2>
+        <p>{t('about.approach.text')}</p>
+      </div>
+      <div class="two-col__visual">
+        <img src="/images/icon-human-heart.png" alt="" width="220" height="220" loading="lazy" />
+      </div>
+    </div>
+  </SectionWrapper>
+
+  <!-- Waarom hoogbegaafd -->
+  <SectionWrapper background="light" padding="lg">
+    <div class="content-section">
+      <h2>{t('about.why.title')}</h2>
+      <p>{t('about.why.text')}</p>
+    </div>
+  </SectionWrapper>
+</BaseLayout>
+
+<style>
+  .content-section {
+    max-width: var(--container-narrow);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary-teal);
+  }
+
+  .content-section p {
+    line-height: var(--line-height-relaxed);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .two-col__text h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary-teal);
+  }
+
+  .two-col__visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .two-col__visual img {
+    max-width: 220px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .two-col__visual img {
+      max-width: 160px;
+    }
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import { useTranslations, getNavItems, getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'nl' } = Astro.props;
+const t = useTranslations(locale);
+const navItems = getNavItems(locale);
+---
+
+<footer class="site-footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href={getLocalePath(locale, '/')} class="footer__logo" aria-label="CoFun Home">
+        <img src="/images/logo-cofun-primary.png" alt="CoFun logo" width="120" height="42" />
+      </a>
+      <p class="footer__tagline">{t('footer.tagline')}</p>
+    </div>
+
+    <div class="footer__links">
+      <h4 class="footer__heading">{t('footer.nav')}</h4>
+      <ul class="footer__nav-list">
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__contact">
+      <h4 class="footer__heading">{t('footer.contact')}</h4>
+      <p>
+        <a href={`mailto:${t('footer.email')}`}>{t('footer.email')}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container">
+      <p>{t('footer.copyright')}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-neutral-dark);
+    color: var(--color-neutral-300);
+    margin-top: var(--space-20);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-12);
+    padding: var(--space-16) 0 var(--space-12);
+  }
+
+  .footer__logo img {
+    height: 36px;
+    width: auto;
+    margin-bottom: var(--space-4);
+    filter: brightness(0) invert(1);
+  }
+
+  .footer__tagline {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-400);
+    max-width: 320px;
+  }
+
+  .footer__heading {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-light);
+    margin-bottom: var(--space-4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__nav-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .footer__nav-list a,
+  .footer__contact a {
+    color: var(--color-neutral-400);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__nav-list a:hover,
+  .footer__contact a:hover {
+    color: var(--color-primary-teal-light);
+    text-decoration: none;
+  }
+
+  .footer__contact p {
+    font-size: var(--font-size-sm);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-6) 0;
+  }
+
+  .footer__bottom p {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      padding: var(--space-10) 0 var(--space-8);
+    }
+  }
+</style>

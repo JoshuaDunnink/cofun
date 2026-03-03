@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  iconAlt?: string;
+  accentColor?: 'teal' | 'red' | 'yellow' | 'green' | 'blue';
+}
+
+const { title, description, icon, iconAlt = '', accentColor = 'teal' } = Astro.props;
+
+const colorMap: Record<string, string> = {
+  teal: 'var(--color-primary-teal)',
+  red: 'var(--color-primary-red)',
+  yellow: 'var(--color-secondary-yellow)',
+  green: 'var(--color-secondary-green)',
+  blue: 'var(--color-secondary-blue)',
+};
+
+const accent = colorMap[accentColor] || colorMap.teal;
+---
+
+<article class="feature-card" style={`--card-accent: ${accent}`}>
+  {icon && (
+    <div class="feature-card__icon">
+      <img src={icon} alt={iconAlt} width="64" height="64" loading="lazy" />
+    </div>
+  )}
+  <h3 class="feature-card__title">{title}</h3>
+  <p class="feature-card__text">{description}</p>
+</article>
+
+<style>
+  .feature-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    border-top: 3px solid var(--card-accent, var(--color-primary-teal));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .feature-card__icon {
+    margin-bottom: var(--space-5);
+    width: 64px;
+    height: 64px;
+  }
+
+  .feature-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .feature-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-dark);
+    margin-bottom: var(--space-3);
+  }
+
+  .feature-card__text {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    flex: 1;
+  }
+</style>

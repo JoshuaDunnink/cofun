@@ -1,0 +1,39 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Locale } from '../i18n/translations';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  locale?: Locale;
+}
+
+const {
+  title,
+  description = 'CoFun helpt scholen om slecht presterende hoogbegaafde leerlingen weer in beweging te krijgen.',
+  locale = 'nl',
+} = Astro.props;
+
+const htmlLang = locale === 'nl' ? 'nl' : 'en';
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/images/logo-cofun-primary.png" />
+    <title>{title} | CoFun</title>
+  </head>
+  <body>
+    <Header locale={locale} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

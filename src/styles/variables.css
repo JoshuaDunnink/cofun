@@ -1,0 +1,88 @@
+/* ==========================================================================
+   CoFun — CSS Custom Properties (Design Tokens)
+   Based on /docs/brand/colorscheme.md & brand-guidelines.md
+   ========================================================================== */
+
+:root {
+  /* ── Primary Colors ───────────────────────────────────────────────────── */
+  --color-primary-teal: #1FA4A2;
+  --color-primary-teal-light: #2cc5c3;
+  --color-primary-teal-dark: #178180;
+  --color-primary-red: #E24A4A;
+  --color-primary-red-light: #e96e6e;
+  --color-primary-red-dark: #c83636;
+
+  /* ── Secondary Colors ─────────────────────────────────────────────────── */
+  --color-secondary-yellow: #F4C542;
+  --color-secondary-yellow-light: #f7d773;
+  --color-secondary-green: #7BC47F;
+  --color-secondary-green-light: #9dd6a0;
+  --color-secondary-blue: #7EC8E3;
+  --color-secondary-blue-light: #a5d9ec;
+
+  /* ── Neutral Colors ───────────────────────────────────────────────────── */
+  --color-neutral-light: #F7FAFC;
+  --color-neutral-100: #EDF2F7;
+  --color-neutral-200: #E2E8F0;
+  --color-neutral-300: #CBD5E0;
+  --color-neutral-400: #A0AEC0;
+  --color-neutral-500: #718096;
+  --color-neutral-600: #4A5568;
+  --color-neutral-dark: #1A202C;
+
+  /* ── Typography ───────────────────────────────────────────────────────── */
+  --font-family-sans: 'Inter', 'Nunito', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* ── Spacing ──────────────────────────────────────────────────────────── */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+  --container-max: 1200px;
+  --container-narrow: 800px;
+  --border-radius-sm: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  --border-radius-full: 9999px;
+
+  /* ── Shadows ──────────────────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.12);
+
+  /* ── Transitions ──────────────────────────────────────────────────────── */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ── Breakpoints (used in media queries) ──────────────────────────────── */
+  /* sm: 640px | md: 768px | lg: 1024px | xl: 1280px */
+}

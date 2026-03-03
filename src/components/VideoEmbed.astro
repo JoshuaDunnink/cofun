@@ -1,0 +1,58 @@
+---
+interface Props {
+  title?: string;
+  placeholderText?: string;
+}
+
+const { title, placeholderText = 'Video komt binnenkort beschikbaar.' } = Astro.props;
+---
+
+<div class="video-embed">
+  {title && <h3 class="video-embed__title">{title}</h3>}
+  <div class="video-embed__placeholder">
+    <div class="video-embed__icon">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="24" fill="currentColor" opacity="0.12" />
+        <polygon points="19,15 19,33 35,24" fill="currentColor" />
+      </svg>
+    </div>
+    <p class="video-embed__text">{placeholderText}</p>
+  </div>
+</div>
+
+<style>
+  .video-embed {
+    width: 100%;
+  }
+
+  .video-embed__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+  }
+
+  .video-embed__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    background-color: var(--color-neutral-100);
+    border: 2px dashed var(--color-neutral-300);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-12) var(--space-8);
+    text-align: center;
+    aspect-ratio: 16 / 9;
+    max-width: 640px;
+    color: var(--color-neutral-500);
+  }
+
+  .video-embed__icon {
+    color: var(--color-primary-teal);
+  }
+
+  .video-embed__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+  }
+</style>

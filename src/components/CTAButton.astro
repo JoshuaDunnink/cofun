@@ -1,0 +1,102 @@
+---
+interface Props {
+  text: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'teal';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { text, href, variant = 'primary', size = 'md' } = Astro.props;
+---
+
+<a href={href} class:list={['cta-btn', `cta-btn--${variant}`, `cta-btn--${size}`]}>
+  {text}
+</a>
+
+<style>
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  /* Sizes */
+  .cta-btn--sm {
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--font-size-sm);
+  }
+
+  .cta-btn--md {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
+  }
+
+  .cta-btn--lg {
+    padding: var(--space-3) var(--space-8);
+    font-size: var(--font-size-lg);
+  }
+
+  /* Variants */
+  .cta-btn--primary {
+    background-color: var(--color-secondary-yellow);
+    color: var(--color-neutral-dark);
+    border-color: var(--color-secondary-yellow);
+  }
+
+  .cta-btn--primary:hover {
+    background-color: var(--color-secondary-yellow-light);
+    border-color: var(--color-secondary-yellow-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+
+  .cta-btn--secondary {
+    background-color: var(--color-primary-red);
+    color: #fff;
+    border-color: var(--color-primary-red);
+  }
+
+  .cta-btn--secondary:hover {
+    background-color: var(--color-primary-red-light);
+    border-color: var(--color-primary-red-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+
+  .cta-btn--teal {
+    background-color: var(--color-primary-teal);
+    color: #fff;
+    border-color: var(--color-primary-teal);
+  }
+
+  .cta-btn--teal:hover {
+    background-color: var(--color-primary-teal-light);
+    border-color: var(--color-primary-teal-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+
+  .cta-btn--outline {
+    background-color: transparent;
+    color: var(--color-primary-teal);
+    border-color: var(--color-primary-teal);
+  }
+
+  .cta-btn--outline:hover {
+    background-color: var(--color-primary-teal);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+</style>

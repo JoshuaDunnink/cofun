@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionWrapper from '../components/SectionWrapper.astro';
+import CTABlock from '../components/CTABlock.astro';
+import { useTranslations } from '../i18n/translations';
+
+const locale = 'nl';
+const t = useTranslations(locale);
+---
+
+<BaseLayout title="Voor scholen" locale={locale}>
+  <Hero
+    title={t('hero.schools.title')}
+    subtitle={t('hero.schools.subtitle')}
+    variant="light"
+  />
+
+  <!-- Hoe werkt het -->
+  <SectionWrapper background="white" padding="lg">
+    <div class="content-section">
+      <h2>{t('schools.how.title')}</h2>
+      <p>{t('schools.how.text')}</p>
+    </div>
+  </SectionWrapper>
+
+  <!-- Stappen -->
+  <SectionWrapper background="light" padding="xl">
+    <div class="steps">
+      <div class="step">
+        <div class="step__number">1</div>
+        <div class="step__content">
+          <h3>{t('schools.step.1.title')}</h3>
+          <p>{t('schools.step.1.text')}</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__number">2</div>
+        <div class="step__content">
+          <h3>{t('schools.step.2.title')}</h3>
+          <p>{t('schools.step.2.text')}</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__number">3</div>
+        <div class="step__content">
+          <h3>{t('schools.step.3.title')}</h3>
+          <p>{t('schools.step.3.text')}</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__number">4</div>
+        <div class="step__content">
+          <h3>{t('schools.step.4.title')}</h3>
+          <p>{t('schools.step.4.text')}</p>
+        </div>
+      </div>
+    </div>
+  </SectionWrapper>
+
+  <!-- Resultaten -->
+  <SectionWrapper background="white" padding="lg">
+    <h2 class="section-title">{t('schools.results.title')}</h2>
+    <ul class="results-list">
+      <li>{t('schools.result.1')}</li>
+      <li>{t('schools.result.2')}</li>
+      <li>{t('schools.result.3')}</li>
+      <li>{t('schools.result.4')}</li>
+    </ul>
+  </SectionWrapper>
+
+  <!-- CTA -->
+  <CTABlock
+    title={t('schools.cta.title')}
+    text={t('schools.cta.text')}
+    buttonText={t('schools.cta.button')}
+    buttonHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  .content-section {
+    max-width: var(--container-narrow);
+  }
+
+  .content-section h2 {
+    margin-bottom: var(--space-4);
+    color: var(--color-primary-teal);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-8);
+    color: var(--color-primary-teal);
+  }
+
+  /* Steps */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: var(--container-narrow);
+  }
+
+  .step {
+    display: flex;
+    gap: var(--space-6);
+    align-items: flex-start;
+  }
+
+  .step__number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-primary-teal);
+    color: #fff;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--border-radius-full);
+  }
+
+  .step__content h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-2);
+    color: var(--color-neutral-dark);
+  }
+
+  .step__content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* Results */
+  .results-list {
+    max-width: var(--container-narrow);
+    list-style: none;
+    padding: 0;
+  }
+
+  .results-list li {
+    position: relative;
+    padding-left: var(--space-8);
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .results-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-teal);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xl);
+  }
+
+  @media (max-width: 640px) {
+    .step {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

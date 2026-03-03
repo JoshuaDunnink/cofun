@@ -1,0 +1,220 @@
+---
+import { useTranslations, getNavItems, getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'nl' } = Astro.props;
+const t = useTranslations(locale);
+const navItems = getNavItems(locale);
+const switchLocale = locale === 'nl' ? 'en' : 'nl';
+const switchLabel = t('lang.switch');
+
+/* Build the switch path: strip /en prefix if present, or add it */
+const currentPath = Astro.url.pathname;
+const switchPath =
+  locale === 'nl'
+    ? `/en${currentPath}`
+    : currentPath.replace(/^\/en/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container header__inner">
+    <a href={getLocalePath(locale, '/')} class="header__logo" aria-label="CoFun Home">
+      <img src="/images/logo-cofun-primary.png" alt="CoFun logo" width="140" height="48" />
+    </a>
+
+    <button class="header__menu-toggle" aria-label="Menu" aria-expanded="false" id="menu-toggle">
+      <span class="hamburger"></span>
+    </button>
+
+    <nav class="header__nav" id="main-nav" aria-label="Hoofdnavigatie">
+      <ul class="header__nav-list">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class:list={['header__nav-link', { active: Astro.url.pathname === item.href }]}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a href={switchPath} class="header__lang-toggle" aria-label={`Switch to ${switchLabel}`}>
+        {switchLabel}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('is-open');
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-neutral-200);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+
+  .header__logo img {
+    display: block;
+    height: 44px;
+    width: auto;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .header__nav-list {
+    display: flex;
+    list-style: none;
+    gap: var(--space-6);
+    padding: 0;
+    margin: 0;
+  }
+
+  .header__nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-600);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+
+  .header__nav-link:hover,
+  .header__nav-link.active {
+    color: var(--color-primary-teal);
+    text-decoration: none;
+  }
+
+  .header__nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-primary-teal);
+    border-radius: 1px;
+  }
+
+  .header__lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-teal);
+    border: 1.5px solid var(--color-primary-teal);
+    border-radius: var(--border-radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.05em;
+  }
+
+  .header__lang-toggle:hover {
+    background-color: var(--color-primary-teal);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .header__menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-neutral-dark);
+    border-radius: 2px;
+    transition: transform var(--transition-normal);
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before {
+    top: -7px;
+  }
+
+  .hamburger::after {
+    top: 7px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .header__menu-toggle {
+      display: block;
+    }
+
+    .header__nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: #fff;
+      padding: var(--space-6);
+      border-bottom: 1px solid var(--color-neutral-200);
+      box-shadow: var(--shadow-md);
+      gap: var(--space-4);
+    }
+
+    .header__nav.is-open {
+      display: flex;
+    }
+
+    .header__nav-list {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .header__nav-link {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
