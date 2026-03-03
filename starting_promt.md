@@ -1,5 +1,9 @@
 Rol:
 Je bent een senior webdesigner, UX‑specialist, copywriter en front‑end architect in één. Je creëert de volledige eerste versie van de CoFun‑website op basis van alle beschikbare projectdocumenten. Je volgt strikt de richtlijnen uit system.md, de brand‑guidelines, het kleurenpalet en de contentbestanden in docs/content. Je bouwt een complete statische websitebasis die later eenvoudig uitbreidbaar is.
+
+De hoofdtaal van de website is Nederlands.
+Voor elke gegenereerde Nederlandse tekst moet je direct daarna ook de Engelse versie genereren.
+De website moet tweetalig worden opgezet met een taal‑toggle (NL/EN) in de header.
 1. Projectbeschrijving
 
 Creëer de volledige basis van een statische website voor CoFun, een organisatie die scholen helpt om slecht presterende hoogbegaafde leerlingen weer “aan” te krijgen.
@@ -19,9 +23,23 @@ De website moet:
 
     volledig statisch zijn (Astro‑structuur volgens project_framework.md)
 
+    tweetalig voorbereid zijn (NL hoofdtaal, EN toggle)
+
 Alle teksten moeten worden geïnspireerd door de inhoud van docs/content/*.md.
 Deze bestanden bevatten de beschrijvingen van de lesplannen en vormen de basis voor de verkoopteksten van het product.
-2. Tone of Voice (verplicht)
+2. Taalvereisten
+
+    Hoofdtaal: Nederlands
+
+    Voor elke gegenereerde Nederlandse tekst moet je direct daarna de Engelse vertaling genereren
+
+    De website moet een taal‑toggle NL/EN bevatten in de header
+
+    De Engelse pagina’s moeten volledig worden aangemaakt, maar mogen placeholders bevatten waar inhoud later wordt toegevoegd
+
+    Componenten moeten taal‑agnostisch zijn
+
+3. Tone of Voice
 
 Gebruik deze tone‑of‑voice consequent in alle teksten:
 
@@ -36,7 +54,7 @@ Gebruik deze tone‑of‑voice consequent in alle teksten:
     Uitnodigend: nieuwsgierigheid prikkelen, open formuleringen
 
 Vermijd: harde sales‑taal, negatieve framing, jargon zonder uitleg.
-3. Designrichtlijnen
+4. Designrichtlijnen
 
 Gebruik een stijl die rust, vertrouwen en creativiteit uitstraalt.
 Volg de brand‑guidelines en het kleurenpalet uit docs/brand.
@@ -61,7 +79,7 @@ Iconen & Illustraties:
 
     Speels maar volwassen
 
-4. Verplichte bronnen
+5. Verplichte bronnen
 
 Gebruik actief de volgende bestanden:
 
@@ -80,8 +98,16 @@ Gebruik actief de volgende bestanden:
     docs/assets/*.png (iconen en logo’s)
 
 Je mag geen tekst letterlijk kopiëren uit docs/content, maar je moet de inhoud, thema’s en structuur gebruiken als inspiratie voor de teksten over het lespakket.
-5. Te genereren website‑onderdelen
-A. Pagina’s (met volledige teksten)
+6. Te genereren website‑onderdelen
+A. Pagina’s (NL + EN)
+
+Voor elke pagina genereer je:
+
+    De volledige Nederlandse tekst
+
+    Meteen daarna de volledige Engelse vertaling
+
+Pagina’s:
 
 Home
 
@@ -129,11 +155,25 @@ Contact
 
     CTA’s
 
-B. Componenten
+B. Engelse structuur
+
+Genereer volledige Engelse pagina’s in:
+
+    src/pages/en/index.astro
+
+    src/pages/en/over-ons.astro
+
+    src/pages/en/lespakket.astro
+
+    src/pages/en/voor-scholen.astro
+
+    src/pages/en/contact.astro
+
+C. Componenten
 
 Genereer een volledige set herbruikbare componenten:
 
-    Header + navigatie
+    Header + navigatie + taal‑toggle (NL/EN)
 
     Footer
 
@@ -151,7 +191,7 @@ Genereer een volledige set herbruikbare componenten:
 
     Grid‑ en layout‑componenten
 
-C. Structuur
+D. Structuur
 
 Gebruik de structuur uit project_framework.md:
 
@@ -162,7 +202,7 @@ pages/
 public/
 images/
 css/
-D. CSS‑variabelen
+E. CSS‑variabelen
 
 Genereer thematische variabelen voor:
 
@@ -174,12 +214,13 @@ Genereer thematische variabelen voor:
 
     breakpoints
 
-E. Copywriting
+F. Copywriting
 
 Schrijf alle teksten volledig uit in de juiste tone‑of‑voice.
 Gebruik duidelijke headings, korte paragrafen en uitnodigende CTA’s.
 Gebruik docs/content/*.md als inspiratie voor alle product‑ en lespakketteksten.
-6. Outputformaat
+Genereer altijd eerst de Nederlandse tekst, daarna de Engelse vertaling.
+7. Outputformaat
 
 Lever de output in de volgende vorm:
 
@@ -189,13 +230,13 @@ Lever de output in de volgende vorm:
 
     Alle componenten (beschreven + voorbeeldcode)
 
-    Alle pagina’s met volledige teksten
+    Alle pagina’s met volledige teksten (NL + EN)
 
     CSS‑variabelen + basisstijl
 
     Eventuele aanvullende suggesties binnen de kaders
 
-7. Creatieve ruimte
+8. Creatieve ruimte
 
 Je mag:
 
@@ -215,6 +256,7 @@ Zolang:
 
     de merkidentiteit consistent blijft
 
-8. Startopdracht
+9. Startopdracht
 
 Genereer nu de volledige eerste versie van de website volgens alle bovenstaande richtlijnen, gebruikmakend van alle beschikbare projectdocumenten, met name system.md, project_framework.md, starting_promt.md en de contentbestanden in docs/content.
+Voor elke tekst genereer je eerst de Nederlandse versie en daarna de Engelse versie.
