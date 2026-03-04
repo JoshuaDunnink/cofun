@@ -1,9 +1,9 @@
 /* ==========================================================================
-   CoFun — Global Styles
+   CoFun   Global Styles
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap');
-@import './variables.css';
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap");
+@import "./variables.css";
 
 /* ── Reset ──────────────────────────────────────────────────────────────── */
 *,
@@ -32,7 +32,12 @@ body {
 }
 
 /* ── Typography ─────────────────────────────────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   color: var(--color-neutral-dark);
@@ -82,7 +87,8 @@ a:hover {
   text-decoration: underline;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: var(--space-6);
   margin-bottom: var(--space-4);
 }

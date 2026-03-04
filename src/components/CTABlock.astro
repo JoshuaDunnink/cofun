@@ -1,16 +1,16 @@
 ---
 /**
- * CTABlock — A standalone call‑to‑action section with heading, text, and button.
+ * CTABlock   A standalone call‑to‑action section with heading, text, and button.
  */
-import CTAButton from './CTAButton.astro';
+import CTAButton from "./CTAButton.astro";
 
 interface Props {
   title: string;
   text: string;
   buttonText: string;
   buttonHref: string;
-  background?: 'teal' | 'light' | 'dark';
-  buttonVariant?: 'primary' | 'secondary' | 'outline';
+  background?: "teal" | "light" | "dark";
+  buttonVariant?: "primary" | "secondary" | "outline";
 }
 
 const {
@@ -18,22 +18,30 @@ const {
   text,
   buttonText,
   buttonHref,
-  background = 'teal',
-  buttonVariant = 'primary',
+  background = "teal",
+  buttonVariant = "primary",
 } = Astro.props;
 
 const bgMap: Record<string, string> = {
-  teal: 'var(--color-primary-teal)',
-  light: 'var(--color-neutral-light)',
-  dark: 'var(--color-neutral-dark)',
+  teal: "var(--color-primary-teal)",
+  light: "var(--color-neutral-light)",
+  dark: "var(--color-neutral-dark)",
 };
 ---
 
-<section class:list={['cta-block', `cta-block--${background}`]} style={`--cta-bg: ${bgMap[background]}`}>
+<section
+  class:list={["cta-block", `cta-block--${background}`]}
+  style={`--cta-bg: ${bgMap[background]}`}
+>
   <div class="container cta-block__inner">
     <h2 class="cta-block__title">{title}</h2>
     <p class="cta-block__text">{text}</p>
-    <CTAButton text={buttonText} href={buttonHref} variant={buttonVariant} size="lg" />
+    <CTAButton
+      text={buttonText}
+      href={buttonHref}
+      variant={buttonVariant}
+      size="lg"
+    />
   </div>
 </section>
 

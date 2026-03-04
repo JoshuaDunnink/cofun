@@ -1,67 +1,68 @@
 /* ==========================================================================
-   CoFun — CSS Custom Properties (Design Tokens)
+   CoFun   CSS Custom Properties (Design Tokens)
    Based on /docs/brand/colorscheme.md & brand-guidelines.md
    ========================================================================== */
 
 :root {
   /* ── Primary Colors ───────────────────────────────────────────────────── */
-  --color-primary-teal: #1FA4A2;
+  --color-primary-teal: #1fa4a2;
   --color-primary-teal-light: #2cc5c3;
   --color-primary-teal-dark: #178180;
-  --color-primary-red: #E24A4A;
+  --color-primary-red: #e24a4a;
   --color-primary-red-light: #e96e6e;
   --color-primary-red-dark: #c83636;
 
   /* ── Secondary Colors ─────────────────────────────────────────────────── */
-  --color-secondary-yellow: #F4C542;
+  --color-secondary-yellow: #f4c542;
   --color-secondary-yellow-light: #f7d773;
-  --color-secondary-green: #7BC47F;
+  --color-secondary-green: #7bc47f;
   --color-secondary-green-light: #9dd6a0;
-  --color-secondary-blue: #7EC8E3;
+  --color-secondary-blue: #7ec8e3;
   --color-secondary-blue-light: #a5d9ec;
 
   /* ── Neutral Colors ───────────────────────────────────────────────────── */
-  --color-neutral-light: #F7FAFC;
-  --color-neutral-100: #EDF2F7;
-  --color-neutral-200: #E2E8F0;
-  --color-neutral-300: #CBD5E0;
-  --color-neutral-400: #A0AEC0;
+  --color-neutral-light: #f7fafc;
+  --color-neutral-100: #edf2f7;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e0;
+  --color-neutral-400: #a0aec0;
   --color-neutral-500: #718096;
-  --color-neutral-600: #4A5568;
-  --color-neutral-dark: #1A202C;
+  --color-neutral-600: #4a5568;
+  --color-neutral-dark: #1a202c;
 
   /* ── Typography ───────────────────────────────────────────────────────── */
-  --font-family-sans: 'Inter', 'Nunito', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --font-family-sans:
+    "Inter", "Nunito", "Source Sans 3", system-ui, -apple-system, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-size-xs: 0.75rem;     /* 12px */
-  --font-size-sm: 0.875rem;    /* 14px */
-  --font-size-base: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;    /* 18px */
-  --font-size-xl: 1.25rem;     /* 20px */
-  --font-size-2xl: 1.5rem;     /* 24px */
-  --font-size-3xl: 1.875rem;   /* 30px */
-  --font-size-4xl: 2.25rem;    /* 36px */
-  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
   --line-height-tight: 1.2;
   --line-height-normal: 1.6;
   --line-height-relaxed: 1.8;
 
   /* ── Spacing ──────────────────────────────────────────────────────────── */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
 
   /* ── Layout ───────────────────────────────────────────────────────────── */
   --container-max: 1200px;

@@ -2,7 +2,7 @@
   "name": "cofun-website",
   "type": "module",
   "version": "1.0.0",
-  "description": "CoFun — Spelend beter leren. Website voor scholen en onderwijsprofessionals.",
+  "description": "CoFun   Spelend beter leren. Website voor scholen en onderwijsprofessionals.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

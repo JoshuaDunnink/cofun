@@ -1,25 +1,29 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
-import SectionWrapper from '../../components/SectionWrapper.astro';
-import CTABlock from '../../components/CTABlock.astro';
-import { useTranslations } from '../../i18n/translations';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import SectionWrapper from "../../components/SectionWrapper.astro";
+import CTABlock from "../../components/CTABlock.astro";
+import { useTranslations } from "../../i18n/translations";
 
-const locale = 'en';
+const locale = "en";
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title="For schools" locale={locale} description="From first introduction to successful implementation — we guide your school every step of the way.">
+<BaseLayout
+  title="For schools"
+  locale={locale}
+  description="From first introduction to successful implementation   we guide your school every step of the way."
+>
   <Hero
-    title={t('hero.schools.title')}
-    subtitle={t('hero.schools.subtitle')}
+    title={t("hero.schools.title")}
+    subtitle={t("hero.schools.subtitle")}
     variant="light"
   />
 
   <SectionWrapper background="white" padding="lg">
     <div class="content-section">
-      <h2>{t('schools.how.title')}</h2>
-      <p>{t('schools.how.text')}</p>
+      <h2>{t("schools.how.title")}</h2>
+      <p>{t("schools.how.text")}</p>
     </div>
   </SectionWrapper>
 
@@ -28,48 +32,48 @@ const t = useTranslations(locale);
       <div class="step">
         <div class="step__number">1</div>
         <div class="step__content">
-          <h3>{t('schools.step.1.title')}</h3>
-          <p>{t('schools.step.1.text')}</p>
+          <h3>{t("schools.step.1.title")}</h3>
+          <p>{t("schools.step.1.text")}</p>
         </div>
       </div>
       <div class="step">
         <div class="step__number">2</div>
         <div class="step__content">
-          <h3>{t('schools.step.2.title')}</h3>
-          <p>{t('schools.step.2.text')}</p>
+          <h3>{t("schools.step.2.title")}</h3>
+          <p>{t("schools.step.2.text")}</p>
         </div>
       </div>
       <div class="step">
         <div class="step__number">3</div>
         <div class="step__content">
-          <h3>{t('schools.step.3.title')}</h3>
-          <p>{t('schools.step.3.text')}</p>
+          <h3>{t("schools.step.3.title")}</h3>
+          <p>{t("schools.step.3.text")}</p>
         </div>
       </div>
       <div class="step">
         <div class="step__number">4</div>
         <div class="step__content">
-          <h3>{t('schools.step.4.title')}</h3>
-          <p>{t('schools.step.4.text')}</p>
+          <h3>{t("schools.step.4.title")}</h3>
+          <p>{t("schools.step.4.text")}</p>
         </div>
       </div>
     </div>
   </SectionWrapper>
 
   <SectionWrapper background="white" padding="lg">
-    <h2 class="section-title">{t('schools.results.title')}</h2>
+    <h2 class="section-title">{t("schools.results.title")}</h2>
     <ul class="results-list">
-      <li>{t('schools.result.1')}</li>
-      <li>{t('schools.result.2')}</li>
-      <li>{t('schools.result.3')}</li>
-      <li>{t('schools.result.4')}</li>
+      <li>{t("schools.result.1")}</li>
+      <li>{t("schools.result.2")}</li>
+      <li>{t("schools.result.3")}</li>
+      <li>{t("schools.result.4")}</li>
     </ul>
   </SectionWrapper>
 
   <CTABlock
-    title={t('schools.cta.title')}
-    text={t('schools.cta.text')}
-    buttonText={t('schools.cta.button')}
+    title={t("schools.cta.title")}
+    text={t("schools.cta.text")}
+    buttonText={t("schools.cta.button")}
     buttonHref="/en/contact"
   />
 </BaseLayout>
@@ -142,7 +146,7 @@ const t = useTranslations(locale);
   }
 
   .results-list li::before {
-    content: '→';
+    content: "→";
     position: absolute;
     left: 0;
     color: var(--color-primary-teal);
