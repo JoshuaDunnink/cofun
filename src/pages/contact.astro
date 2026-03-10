@@ -1,63 +1,32 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import SectionWrapper from '../components/SectionWrapper.astro';
-import { useTranslations } from '../i18n/translations';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionWrapper from "../components/SectionWrapper.astro";
+import { useTranslations } from "../i18n/translations";
 
-const locale = 'nl';
+const locale = "nl";
 const t = useTranslations(locale);
 ---
 
 <BaseLayout title="Contact" locale={locale}>
   <Hero
-    title={t('hero.contact.title')}
-    subtitle={t('hero.contact.subtitle')}
+    title={t("hero.contact.title")}
+    subtitle={t("hero.contact.subtitle")}
     variant="light"
   />
 
   <SectionWrapper background="white" padding="lg">
     <div class="contact-grid">
       <div class="contact-intro">
-        <h2>{t('contact.intro.title')}</h2>
-        <p>{t('contact.intro.text')}</p>
+        <h2>{t("contact.intro.title")}</h2>
+        <p>{t("contact.intro.text")}</p>
         <div class="contact-info">
           <p>
             <strong>E-mail:</strong><br />
-            <a href={`mailto:${t('footer.email')}`}>{t('footer.email')}</a>
+            <a href={`mailto:${t("footer.email")}`}>{t("footer.email")}</a>
           </p>
         </div>
       </div>
-
-      <form class="contact-form" action="#" method="POST">
-        <div class="form-group">
-          <label for="name">{t('contact.form.name')}</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-
-        <div class="form-group">
-          <label for="email">{t('contact.form.email')}</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-
-        <div class="form-group">
-          <label for="school">{t('contact.form.school')}</label>
-          <input type="text" id="school" name="school" />
-        </div>
-
-        <div class="form-group">
-          <label for="role">{t('contact.form.role')}</label>
-          <input type="text" id="role" name="role" />
-        </div>
-
-        <div class="form-group">
-          <label for="message">{t('contact.form.message')}</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
-
-        <p class="form-privacy">{t('contact.form.privacy')}</p>
-
-        <button type="submit" class="form-submit">{t('contact.form.submit')}</button>
-      </form>
     </div>
   </SectionWrapper>
 </BaseLayout>
@@ -65,9 +34,10 @@ const t = useTranslations(locale);
 <style>
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr;
     gap: var(--space-16);
     align-items: start;
+    max-width: 600px;
   }
 
   .contact-intro h2 {
@@ -90,76 +60,67 @@ const t = useTranslations(locale);
     margin-bottom: 0;
   }
 
-  /* Form */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .form-group label {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-neutral-600);
-  }
-
-  .form-group input,
-  .form-group textarea {
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-base);
-    padding: var(--space-3) var(--space-4);
-    border: 1.5px solid var(--color-neutral-300);
-    border-radius: var(--border-radius-md);
-    transition: border-color var(--transition-fast);
-    background-color: #fff;
-    color: var(--color-neutral-dark);
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-primary-teal);
-    box-shadow: 0 0 0 3px rgba(31, 164, 162, 0.12);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-  }
-
-  .form-privacy {
-    font-size: var(--font-size-xs);
-    color: var(--color-neutral-500);
-  }
-
-  .form-submit {
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
-    padding: var(--space-3) var(--space-8);
-    background-color: var(--color-primary-teal);
-    color: #fff;
-    border: none;
-    border-radius: var(--border-radius-md);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    align-self: flex-start;
-  }
-
-  .form-submit:hover {
-    background-color: var(--color-primary-teal-light);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-
   @media (max-width: 768px) {
     .contact-grid {
-      grid-template-columns: 1fr;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .form-group label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-neutral-600);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      font-family: var(--font-family-sans);
+      font-size: var(--font-size-base);
+      padding: var(--space-3) var(--space-4);
+      border: 1.5px solid var(--color-neutral-300);
+      border-radius: var(--border-radius-md);
+      transition: border-color var(--transition-fast);
+      background-color: #fff;
+      color: var(--color-neutral-dark);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary-teal);
+      box-shadow: 0 0 0 3px rgba(31, 164, 162, 0.12);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-privacy {
+      font-size: var(--font-size-xs);
+      color: var(--color-neutral-500);
+    }
+
+    .form-submit {
+      font-family: var(--font-family-sans);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      padding: var(--space-3) var(--space-8);
+      background-color: var(--color-primary-teal);
+      color: #fff;
+      border: none;
+      border-radius: var(--border-radius-md);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      align-self: flex-start;
+    }
+
+    .form-submit:hover {
+      background-color: var(--color-primary-teal-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 768px) {
       gap: var(--space-8);
     }
   }

@@ -1,12 +1,16 @@
 ---
-import { useTranslations, getNavItems, getLocalePath } from '../i18n/translations';
-import type { Locale } from '../i18n/translations';
+import {
+  useTranslations,
+  getNavItems,
+  getLocalePath,
+} from "../i18n/translations";
+import type { Locale } from "../i18n/translations";
 
 interface Props {
   locale?: Locale;
 }
 
-const { locale = 'nl' } = Astro.props;
+const { locale = "nl" } = Astro.props;
 const t = useTranslations(locale);
 const navItems = getNavItems(locale);
 ---
@@ -14,32 +18,51 @@ const navItems = getNavItems(locale);
 <footer class="site-footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a href={getLocalePath(locale, '/')} class="footer__logo" aria-label="CoFun Home">
-        <img src="/images/logo-cofun-primary.png" alt="CoFun logo" width="120" height="42" />
+      <a
+        href={getLocalePath(locale, "/")}
+        class="footer__logo"
+        aria-label="CoFun Home"
+      >
+        <img
+          src="/images/logo-cofun-primary.png"
+          alt="CoFun logo"
+          width="120"
+          height="42"
+        />
       </a>
-      <p class="footer__tagline">{t('footer.tagline')}</p>
+      <p class="footer__tagline">{t("footer.tagline")}</p>
     </div>
 
     <div class="footer__links">
-      <h4 class="footer__heading">{t('footer.nav')}</h4>
+      <h4 class="footer__heading">{t("footer.nav")}</h4>
       <ul class="footer__nav-list">
-        {navItems.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
-        ))}
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <div class="footer__contact">
-      <h4 class="footer__heading">{t('footer.contact')}</h4>
+      <h4 class="footer__heading">{t("footer.contact")}</h4>
       <p>
-        <a href={`mailto:${t('footer.email')}`}>{t('footer.email')}</a>
+        <a href={`mailto:${t("footer.email")}`}>{t("footer.email")}</a>
       </p>
+    </div>
+  </div>
+
+  <div class="footer__construction-notice">
+    <div class="container">
+      <p>🚧 {t("footer.construction")}</p>
     </div>
   </div>
 
   <div class="footer__bottom">
     <div class="container">
-      <p>{t('footer.copyright')}</p>
+      <p>{t("footer.copyright")}</p>
     </div>
   </div>
 </footer>
@@ -117,6 +140,19 @@ const navItems = getNavItems(locale);
     font-size: var(--font-size-xs);
     color: var(--color-neutral-500);
     text-align: center;
+  }
+
+  .footer__construction-notice {
+    background-color: rgba(255, 193, 7, 0.05);
+    border-top: 1px solid rgba(255, 193, 7, 0.2);
+    padding: var(--space-4) 0;
+  }
+
+  .footer__construction-notice p {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-600);
+    text-align: center;
+    margin: 0;
   }
 
   @media (max-width: 768px) {

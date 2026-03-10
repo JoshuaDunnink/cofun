@@ -63,7 +63,7 @@ export const translations = {
       "CoFun maakt wetenschappelijke inzichten over cognitieve ontwikkeling toegankelijk voor het onderwijs. Met ons lespakket bieden we leerkrachten praktische, speelse en bewezen methoden om hoogbegaafde leerlingen te begeleiden. We observeren, reflecteren en bouwen   stap voor stap.",
     "about.approach.title": "Onze aanpak",
     "about.approach.text":
-      "We volgen de omgekeerde piramide: in plaats van direct te werken aan de executieve functie waar een kind moeite mee heeft, versterken we de onderliggende cognitieve bouwstenen. Door spel, gerichte activiteiten en mediërend leren ontstaat ruimte voor groei van binnenuit.",
+      "We volgen de omgekeerde piramide: in plaats van direct te werken aan de executieve functie waar een kind moeite mee heeft, versterken we de onderliggende cognitieve bouwstenen. Door spel, gerichte speelse activiteiten ontstaat ruimte voor groei van binnenuit.",
     "about.why.title": "Waarom hoogbegaafde leerlingen?",
     "about.why.text":
       "Hoogbegaafde kinderen die onder hun niveau presteren worden vaak niet herkend of begrepen. Ze kunnen gedragsproblemen vertonen, zich terugtrekken of juist opvallen door frustratie. CoFun helpt om deze leerlingen weer aan te sluiten bij hun eigen potentieel   spelend, denkend en groeiend.",
@@ -152,7 +152,7 @@ export const translations = {
       "We horen graag van u. Stel uw vraag, deel uw situatie of plan een kennismakingsgesprek.",
     "contact.intro.title": "Laten we kennismaken",
     "contact.intro.text":
-      "Of u nu meer wilt weten over het lespakket, een vraag heeft over implementatie of gewoon nieuwsgierig bent   wij staan voor u klaar. Vul het formulier in en we nemen zo snel mogelijk contact met u op.",
+      "Of u nu meer wilt weten over het lespakket, een vraag heeft over implementatie of gewoon nieuwsgierig bent   wij staan voor u klaar. Stuur ons een email op info@cofun.nl en we nemen zo snel mogelijk contact met u op.",
     "contact.form.name": "Naam",
     "contact.form.email": "E-mailadres",
     "contact.form.school": "Schoolnaam",
@@ -168,7 +168,7 @@ export const translations = {
     "footer.contact": "Contact",
     "footer.email": "info@cofun.nl",
     "footer.copyright": "© 2026 CoFun. Alle rechten voorbehouden.",
-
+    "footer.construction": "Website in aanbouw. Meer content op komst.",
     /* ── Misc ───────────────────────────────────────────────────────────── */
     "testimonial.coming": "Ervaringen van scholen volgen binnenkort.",
     "video.placeholder": "Video komt binnenkort beschikbaar.",
@@ -230,7 +230,7 @@ export const translations = {
       "CoFun makes scientific insights about cognitive development accessible for education. With our curriculum, we offer teachers practical, playful and proven methods to guide gifted students. We observe, reflect and build   step by step.",
     "about.approach.title": "Our approach",
     "about.approach.text":
-      "We follow the inverted pyramid: instead of directly working on the executive function a child struggles with, we strengthen the underlying cognitive building blocks. Through play, targeted activities and mediated learning, space for growth emerges from within.",
+      "We follow the inverted pyramid: instead of directly working on the executive function a child struggles with, we strengthen the underlying cognitive building blocks. Through play and targeted activities, space for growth emerges from within.",
     "about.why.title": "Why gifted students?",
     "about.why.text":
       "Gifted children who underperform are often unrecognised or misunderstood. They may exhibit behavioural issues, withdraw or stand out through frustration. CoFun helps these students reconnect with their own potential   through play, thinking and growing.",
@@ -314,7 +314,7 @@ export const translations = {
       "We would love to hear from you. Ask a question, share your situation or schedule an introductory meeting.",
     "contact.intro.title": "Let's connect",
     "contact.intro.text":
-      "Whether you want to learn more about the curriculum, have a question about implementation or are simply curious   we are here for you. Fill in the form and we will get back to you as soon as possible.",
+      "Whether you want to learn more about the curriculum, have a question about implementation or are simply curious   we are here for you. Send us an email at info@cofun.nl and we will get back to you as soon as possible.",
     "contact.form.name": "Name",
     "contact.form.email": "Email address",
     "contact.form.school": "School name",
@@ -330,7 +330,8 @@ export const translations = {
     "footer.contact": "Contact",
     "footer.email": "info@cofun.nl",
     "footer.copyright": "© 2026 CoFun. All rights reserved.",
-
+    "footer.construction":
+      "Website under construction. More content on the way.",
     /* ── Misc ───────────────────────────────────────────────────────────── */
     "testimonial.coming": "School experiences coming soon.",
     "video.placeholder": "Video coming soon.",
