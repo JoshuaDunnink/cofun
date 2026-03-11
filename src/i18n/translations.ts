@@ -19,14 +19,14 @@ export const translations = {
     /* ── Hero ───────────────────────────────────────────────────────────── */
     "hero.home.title": "Spelend beter leren",
     "hero.home.subtitle":
-      "CoFun helpt scholen om slecht presterende hoogbegaafde leerlingen weer in beweging te krijgen   met plezier, inzicht en verbinding.",
+      "CoFun is hét lespakket om de executieve functies van kinderen te ontwikkelen door in te zetten op de cognitieve functies.",
     "hero.home.cta": "Ontdek het lespakket",
     "hero.home.cta_secondary": "Meer over onze aanpak",
 
     /* ── Home Page ──────────────────────────────────────────────────────── */
     "home.problem.title": "Het probleem herkennen",
     "home.problem.text":
-      "Hoogbegaafde leerlingen die vastlopen in het onderwijs vormen een groeiende uitdaging. Ze presteren onder hun niveau, verliezen motivatie of vallen stil. Niet omdat ze het niet kunnen   maar omdat de juiste aansluiting ontbreekt.",
+      "(Hoogbegaafde) leerlingen die vastlopen in het onderwijs vormen een groeiende uitdaging. Ze presteren onder hun niveau, verliezen motivatie of vallen stil. Niet omdat ze het niet kunnen maar omdat de juiste aansluiting ontbreekt. Inzetten op executieve functies werkt pas als de onderliggende cognitieve functies goed ontwikkeld zijn.",
     "home.solution.title": "Onze oplossing",
     "home.solution.text":
       "CoFun biedt een bewezen lespakket dat spelenderwijs de cognitieve en executieve functies van leerlingen versterkt. Door te werken vanuit de basis   met spel, observatie en reflectie   komen leerlingen weer in beweging.",
@@ -57,36 +57,33 @@ export const translations = {
       "Wij geloven dat elk kind het verdient om gezien te worden in wie het is én wat het kan.",
     "about.vision.title": "Onze visie",
     "about.vision.text":
-      "Elk kind beschikt over uniek potentieel. Wanneer een hoogbegaafde leerling vastloopt, is dat zelden een kwestie van onvermogen. Het is een signaal dat de juiste aansluiting ontbreekt. Wij geloven dat door te investeren in het fundament   de cognitieve en executieve bouwstenen   kinderen weer in beweging komen.",
+      "Elk kind beschikt over uniek potentieel. Wanneer een leerling vastloopt, is dat zelden een kwestie van onvermogen. Het is een signaal dat de juiste aansluiting ontbreekt. Wij geloven dat door te investeren in het fundament   de cognitieve en executieve bouwstenen   kinderen weer in beweging komen.",
     "about.mission.title": "Onze missie",
     "about.mission.text":
-      "CoFun maakt wetenschappelijke inzichten over cognitieve ontwikkeling toegankelijk voor het onderwijs. Met ons lespakket bieden we leerkrachten praktische, speelse en bewezen methoden om hoogbegaafde leerlingen te begeleiden. We observeren, reflecteren en bouwen   stap voor stap.",
+      "CoFun maakt wetenschappelijke inzichten over cognitieve ontwikkeling toegankelijk voor het onderwijs. Met ons lespakket bieden we leerkrachten praktische, speelse en bewezen methodiek om leerlingen te begeleiden. We observeren, reflecteren en bouwen   stap voor stap.",
     "about.approach.title": "Onze aanpak",
     "about.approach.text":
-      "We volgen de omgekeerde piramide: in plaats van direct te werken aan de executieve functie waar een kind moeite mee heeft, versterken we de onderliggende cognitieve bouwstenen. Door spel, gerichte speelse activiteiten ontstaat ruimte voor groei van binnenuit.",
-    "about.why.title": "Waarom hoogbegaafde leerlingen?",
+      'We volgen de omgekeerde piramide: in plaats van direct te werken aan de executieve functie waar een kind moeite mee heeft, versterken we de onderliggende cognitieve bouwstenen. Door spel, gerichte speelse activiteiten ontstaat ruimte voor groei van binnenuit. Deze aanpak is gebaseerd op de omgekeerde piramide van Emiel van Doorn van <a href="https://www.stibco.nl" target="_blank" rel="noopener noreferrer">StiBCO</a>.',
+    "about.why.title": "Waarom voor alle leerlingen?",
     "about.why.text":
-      "Hoogbegaafde kinderen die onder hun niveau presteren worden vaak niet herkend of begrepen. Ze kunnen gedragsproblemen vertonen, zich terugtrekken of juist opvallen door frustratie. CoFun helpt om deze leerlingen weer aan te sluiten bij hun eigen potentieel   spelend, denkend en groeiend.",
+      "Zowel de 'moeilijk lerende' als de 'makkelijk lerende' leerling maakt gebruik van dezelfde cognitieve en executieve functies. Wanneer die niet goed ontwikkeld zijn, kunnen kinderen gedragsproblemen vertonen, zich terugtrekken of juist opvallen door frustratie. CoFun helpt leerlingen weer aan te sluiten bij hun eigen potentieel spelend, denkend en groeiend.",
 
     /* ── Curriculum Page ────────────────────────────────────────────────── */
     "hero.curriculum.title": "Het lespakket",
     "hero.curriculum.subtitle":
-      "Een praktisch en wetenschappelijk onderbouwd lespakket dat leerkrachten handvatten geeft om hoogbegaafde leerlingen spelenderwijs te begeleiden.",
+      "Een praktisch en wetenschappelijk onderbouwd lespakket dat leerkrachten handvatten geeft om alle leerlingen spelenderwijs te begeleiden.",
     "curriculum.what.title": "Wat is het lespakket?",
     "curriculum.what.text":
-      "Het CoFun-lespakket is een complete set lesbrieven, instructievideo's en spelmateriaal waarmee leerkrachten gericht kunnen werken aan de cognitieve en executieve functies van leerlingen. Elk onderdeel is zorgvuldig opgebouwd volgens de omgekeerde piramide.",
+      'Het CoFun-lespakket is een complete set lesbrieven en spelmateriaal waarmee leerkrachten gericht kunnen werken aan de cognitieve en executieve functies van leerlingen. Elk onderdeel is zorgvuldig opgebouwd volgens de omgekeerde piramide van <a href="https://www.stibco.nl" target="_blank" rel="noopener noreferrer">StiBCO</a>.',
     "curriculum.contains.title": "Wat bevat het?",
-    "curriculum.contains.videos": "Instructievideo's per leeftijdsgroep",
     "curriculum.contains.briefs":
       "Uitgebreide lesbrieven met observatiehandvatten",
     "curriculum.contains.games":
-      "Spelmateriaal afgestemd op cognitieve bouwstenen",
-    "curriculum.contains.reflection":
-      "Reflectietools voor leerkrachten en leerlingen",
+      "Speltips afgestemd op cognitieve bouwstenen",
     "curriculum.contains.guide": "Handleiding voor implementatie in de klas",
     "curriculum.who.title": "Voor wie?",
     "curriculum.who.text":
-      "Het lespakket is ontworpen voor leerkrachten, intern begeleiders en zorgcoördinatoren die werken met hoogbegaafde leerlingen in het primair onderwijs. Het is geschikt voor groep 1-2, groep 3-4-5 en groep 6-7-8.",
+      "Het lespakket is ontworpen voor leerkrachten, intern begeleiders en zorgcoördinatoren die werken met leerlingen in het primair onderwijs. Het is geschikt voor groep 1-2, groep 3-4-5 en groep 6-7-8.",
     "curriculum.groups.12.title": "Groep 1-2",
     "curriculum.groups.12.subtitle": "Kinderen van 4 – 6 jaar",
     "curriculum.groups.12.text":
@@ -129,7 +126,7 @@ export const translations = {
       "Leerkrachten maken kennis met de methode, de materialen en de achterliggende visie. Ze ervaren zelf wat leerlingen straks gaan doen.",
     "schools.step.3.title": "Uitvoering in de klas",
     "schools.step.3.text":
-      "Met de lesbrieven en video's als leidraad gaan leerkrachten aan de slag. Observeren, begeleiden en reflecteren staan centraal.",
+      "Met de lesbrieven als leidraad gaan leerkrachten aan de slag. Observeren, begeleiden en reflecteren staan centraal.",
     "schools.step.4.title": "Evaluatie & groei",
     "schools.step.4.text":
       "Samen evalueren we de voortgang en bespreken we observaties. Zo ontstaat een continu proces van groei   voor leerlingen én voor het team.",
@@ -138,7 +135,7 @@ export const translations = {
       "Leerlingen die weer betrokken raken en in beweging komen",
     "schools.result.2":
       "Leerkrachten die met meer inzicht en vertrouwen begeleiden",
-    "schools.result.3": "Een schoolbrede aanpak voor hoogbegaafdheid",
+    "schools.result.3": "Een schoolbrede aanpak voor alle leerlingen",
     "schools.result.4":
       "Zichtbare groei in cognitieve en executieve vaardigheden",
     "schools.cta.title": "Samen aan de slag?",
@@ -224,16 +221,16 @@ export const translations = {
       "We believe every child deserves to be seen for who they are and what they can achieve.",
     "about.vision.title": "Our vision",
     "about.vision.text":
-      "Every child has unique potential. When a gifted student gets stuck, it is rarely a matter of inability. It is a signal that the right connection is missing. We believe that by investing in the foundation   cognitive and executive building blocks   children start moving again.",
+      "Every child has unique potential. When a student gets stuck, it is rarely a matter of inability. It is a signal that the right connection is missing. We believe that by investing in the foundation   cognitive and executive building blocks   children start moving again.",
     "about.mission.title": "Our mission",
     "about.mission.text":
-      "CoFun makes scientific insights about cognitive development accessible for education. With our curriculum, we offer teachers practical, playful and proven methods to guide gifted students. We observe, reflect and build   step by step.",
+      "CoFun makes scientific insights about cognitive development accessible for education. With our curriculum, we offer teachers practical, playful and proven methods to guide students. We observe, reflect and build   step by step.",
     "about.approach.title": "Our approach",
     "about.approach.text":
-      "We follow the inverted pyramid: instead of directly working on the executive function a child struggles with, we strengthen the underlying cognitive building blocks. Through play and targeted activities, space for growth emerges from within.",
-    "about.why.title": "Why gifted students?",
+      'We follow the inverted pyramid: instead of directly working on the executive function a child struggles with, we strengthen the underlying cognitive building blocks. Through play and targeted activities, space for growth emerges from within. This approach is based on the inverted pyramid by Emiel van Doorn of <a href="https://www.stibco.nl" target="_blank" rel="noopener noreferrer">StiBCO</a>.',
+    "about.why.title": "Why every student?",
     "about.why.text":
-      "Gifted children who underperform are often unrecognised or misunderstood. They may exhibit behavioural issues, withdraw or stand out through frustration. CoFun helps these students reconnect with their own potential   through play, thinking and growing.",
+      "Both 'struggling' and 'high-achieving' students rely on the same cognitive and executive functions. When these are underdeveloped, children may exhibit behavioural issues, withdraw or stand out through frustration. CoFun helps students reconnect with their own potential — through play, thinking and growing.",
 
     /* ── Curriculum Page ────────────────────────────────────────────────── */
     "hero.curriculum.title": "The curriculum",
@@ -241,19 +238,16 @@ export const translations = {
       "A practical, evidence-based curriculum that equips teachers to guide gifted students through play.",
     "curriculum.what.title": "What is the curriculum?",
     "curriculum.what.text":
-      "The CoFun curriculum is a complete set of lesson plans, instructional videos and play materials that enable teachers to systematically develop students' cognitive and executive functions. Every component is carefully structured following the inverted pyramid.",
+      "The CoFun curriculum is a complete set of lesson plans and play materials that enable teachers to systematically develop students' cognitive and executive functions. Every component is carefully structured following the inverted pyramid by <a href=\"https://www.stibco.nl\" target=\"_blank\" rel=\"noopener noreferrer\">StiBCO</a>.",
     "curriculum.contains.title": "What does it contain?",
-    "curriculum.contains.videos": "Instructional videos for each age group",
     "curriculum.contains.briefs":
       "Detailed lesson plans with observation guides",
     "curriculum.contains.games":
-      "Play materials aligned with cognitive building blocks",
-    "curriculum.contains.reflection":
-      "Reflection tools for teachers and students",
+      "Play instructions and tips aligned with cognitive building blocks",
     "curriculum.contains.guide": "Implementation guide for the classroom",
     "curriculum.who.title": "Who is it for?",
     "curriculum.who.text":
-      "The curriculum is designed for teachers, special needs coordinators and care coordinators working with gifted students in primary education. It is suitable for ages 4-6, 7-9 and 10-12.",
+      "The curriculum is designed for teachers, special needs coordinators and care coordinators working with students in primary education. It is suitable for ages 4-6, 7-9 and 10-12.",
     "curriculum.groups.12.title": "Ages 4-6",
     "curriculum.groups.12.subtitle": "Kindergarten and Year 1",
     "curriculum.groups.12.text":
@@ -293,7 +287,7 @@ export const translations = {
       "Teachers get acquainted with the method, materials and underlying vision. They experience first-hand what students will be doing.",
     "schools.step.3.title": "Classroom practice",
     "schools.step.3.text":
-      "Using the lesson plans and videos as a guide, teachers get to work. Observation, guidance and reflection take centre stage.",
+      "Using the lesson plans as a guide, teachers get to work. Observation, guidance and reflection take centre stage.",
     "schools.step.4.title": "Evaluation & growth",
     "schools.step.4.text":
       "Together, we evaluate progress and discuss observations. This creates a continuous process of growth   for students and for the team.",
@@ -301,7 +295,7 @@ export const translations = {
     "schools.result.1": "Students who re-engage and start moving again",
     "schools.result.2":
       "Teachers who guide with greater insight and confidence",
-    "schools.result.3": "A school-wide approach to giftedness",
+    "schools.result.3": "A school-wide approach to all students",
     "schools.result.4": "Visible growth in cognitive and executive skills",
     "schools.cta.title": "Let's get started",
     "schools.cta.text":

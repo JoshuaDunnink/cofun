@@ -1,33 +1,33 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import SectionWrapper from '../components/SectionWrapper.astro';
-import { useTranslations } from '../i18n/translations';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionWrapper from "../components/SectionWrapper.astro";
+import { useTranslations } from "../i18n/translations";
 
-const locale = 'nl';
+const locale = "nl";
 const t = useTranslations(locale);
 ---
 
 <BaseLayout title="Over ons" locale={locale}>
   <Hero
-    title={t('hero.about.title')}
-    subtitle={t('hero.about.subtitle')}
+    title={t("hero.about.title")}
+    subtitle={t("hero.about.subtitle")}
     variant="light"
   />
 
   <!-- Visie -->
   <SectionWrapper background="white" padding="lg">
     <div class="content-section">
-      <h2>{t('about.vision.title')}</h2>
-      <p>{t('about.vision.text')}</p>
+      <h2>{t("about.vision.title")}</h2>
+      <p>{t("about.vision.text")}</p>
     </div>
   </SectionWrapper>
 
   <!-- Missie -->
   <SectionWrapper background="light" padding="lg">
     <div class="content-section">
-      <h2>{t('about.mission.title')}</h2>
-      <p>{t('about.mission.text')}</p>
+      <h2>{t("about.mission.title")}</h2>
+      <p>{t("about.mission.text")}</p>
     </div>
   </SectionWrapper>
 
@@ -35,11 +35,17 @@ const t = useTranslations(locale);
   <SectionWrapper background="white" padding="lg">
     <div class="two-col">
       <div class="two-col__text">
-        <h2>{t('about.approach.title')}</h2>
-        <p>{t('about.approach.text')}</p>
+        <h2>{t("about.approach.title")}</h2>
+        <p set:html={t("about.approach.text")} />
       </div>
       <div class="two-col__visual">
-        <img src="/images/icon-human-heart.png" alt="" width="220" height="220" loading="lazy" />
+        <img
+          src="/images/icon-human-heart.png"
+          alt=""
+          width="220"
+          height="220"
+          loading="lazy"
+        />
       </div>
     </div>
   </SectionWrapper>
@@ -47,8 +53,8 @@ const t = useTranslations(locale);
   <!-- Waarom hoogbegaafd -->
   <SectionWrapper background="light" padding="lg">
     <div class="content-section">
-      <h2>{t('about.why.title')}</h2>
-      <p>{t('about.why.text')}</p>
+      <h2>{t("about.why.title")}</h2>
+      <p>{t("about.why.text")}</p>
     </div>
   </SectionWrapper>
 </BaseLayout>

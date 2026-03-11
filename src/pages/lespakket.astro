@@ -1,55 +1,54 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import SectionWrapper from '../components/SectionWrapper.astro';
-import FeatureCard from '../components/FeatureCard.astro';
-import CTABlock from '../components/CTABlock.astro';
-import VideoEmbed from '../components/VideoEmbed.astro';
-import { useTranslations } from '../i18n/translations';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionWrapper from "../components/SectionWrapper.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import CTABlock from "../components/CTABlock.astro";
+import VideoEmbed from "../components/VideoEmbed.astro";
+import { useTranslations } from "../i18n/translations";
 
-const locale = 'nl';
+const locale = "nl";
 const t = useTranslations(locale);
 ---
 
 <BaseLayout title="Het lespakket" locale={locale}>
   <Hero
-    title={t('hero.curriculum.title')}
-    subtitle={t('hero.curriculum.subtitle')}
+    title={t("hero.curriculum.title")}
+    subtitle={t("hero.curriculum.subtitle")}
     variant="primary"
   />
 
   <!-- Wat is het lespakket -->
   <SectionWrapper background="white" padding="lg">
     <div class="content-section">
-      <h2>{t('curriculum.what.title')}</h2>
-      <p>{t('curriculum.what.text')}</p>
+      <h2>{t("curriculum.what.title")}</h2>
+      <p set:html={t("curriculum.what.text")} />
     </div>
   </SectionWrapper>
 
   <!-- Wat bevat het -->
   <SectionWrapper background="light" padding="lg">
-    <h2 class="section-title">{t('curriculum.contains.title')}</h2>
+    <h2 class="section-title">{t("curriculum.contains.title")}</h2>
     <ul class="contains-list">
-      <li>{t('curriculum.contains.videos')}</li>
-      <li>{t('curriculum.contains.briefs')}</li>
-      <li>{t('curriculum.contains.games')}</li>
-      <li>{t('curriculum.contains.reflection')}</li>
-      <li>{t('curriculum.contains.guide')}</li>
+      <li>{t("curriculum.contains.videos")}</li>
+      <li>{t("curriculum.contains.briefs")}</li>
+      <li>{t("curriculum.contains.games")}</li>
+      <li>{t("curriculum.contains.guide")}</li>
     </ul>
   </SectionWrapper>
 
   <!-- Video placeholder -->
   <SectionWrapper background="white" padding="md">
     <div class="text-center">
-      <VideoEmbed placeholderText={t('video.placeholder')} />
+      <VideoEmbed placeholderText={t("video.placeholder")} />
     </div>
   </SectionWrapper>
 
   <!-- Voor wie -->
   <SectionWrapper background="white" padding="lg">
     <div class="content-section">
-      <h2>{t('curriculum.who.title')}</h2>
-      <p>{t('curriculum.who.text')}</p>
+      <h2>{t("curriculum.who.title")}</h2>
+      <p>{t("curriculum.who.text")}</p>
     </div>
   </SectionWrapper>
 
@@ -57,20 +56,20 @@ const t = useTranslations(locale);
   <SectionWrapper background="light" padding="xl">
     <div class="card-grid">
       <FeatureCard
-        title={t('curriculum.groups.12.title')}
-        description={t('curriculum.groups.12.text')}
+        title={t("curriculum.groups.12.title")}
+        description={t("curriculum.groups.12.text")}
         icon="/images/icon-puzzle-heart_green_groepen1-2.png"
         accentColor="green"
       />
       <FeatureCard
-        title={t('curriculum.groups.345.title')}
-        description={t('curriculum.groups.345.text')}
+        title={t("curriculum.groups.345.title")}
+        description={t("curriculum.groups.345.text")}
         icon="/images/icon-puzzle-heart_yellow_groepen3-4-5.png"
         accentColor="yellow"
       />
       <FeatureCard
-        title={t('curriculum.groups.678.title')}
-        description={t('curriculum.groups.678.text')}
+        title={t("curriculum.groups.678.title")}
+        description={t("curriculum.groups.678.text")}
         icon="/images/icon-puzzle-heart_pink_groepen6-7-8.png"
         accentColor="red"
       />
@@ -79,21 +78,21 @@ const t = useTranslations(locale);
 
   <!-- Voordelen -->
   <SectionWrapper background="white" padding="lg">
-    <h2 class="section-title">{t('curriculum.benefits.title')}</h2>
+    <h2 class="section-title">{t("curriculum.benefits.title")}</h2>
     <ul class="benefits-list">
-      <li>{t('curriculum.benefit.1')}</li>
-      <li>{t('curriculum.benefit.2')}</li>
-      <li>{t('curriculum.benefit.3')}</li>
-      <li>{t('curriculum.benefit.4')}</li>
-      <li>{t('curriculum.benefit.5')}</li>
+      <li>{t("curriculum.benefit.1")}</li>
+      <li>{t("curriculum.benefit.2")}</li>
+      <li>{t("curriculum.benefit.3")}</li>
+      <li>{t("curriculum.benefit.4")}</li>
+      <li>{t("curriculum.benefit.5")}</li>
     </ul>
   </SectionWrapper>
 
   <!-- CTA -->
   <CTABlock
-    title={t('curriculum.cta.title')}
-    text={t('curriculum.cta.text')}
-    buttonText={t('curriculum.cta.button')}
+    title={t("curriculum.cta.title")}
+    text={t("curriculum.cta.text")}
+    buttonText={t("curriculum.cta.button")}
     buttonHref="/contact"
   />
 </BaseLayout>
@@ -131,7 +130,7 @@ const t = useTranslations(locale);
 
   .contains-list li::before,
   .benefits-list li::before {
-    content: '✓';
+    content: "✓";
     position: absolute;
     left: 0;
     color: var(--color-secondary-green);
