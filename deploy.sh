@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # deploy.sh   Manual FTP deployment fallback (requires lftp)
-# Usage: ./deploy.sh [production|staging]
+# Usage: ./deploy.sh
 
 set -euo pipefail
 
@@ -12,32 +12,17 @@ fi
 # shellcheck disable=SC1091
 source .env
 
-# Optional first argument overrides DEPLOY_ENV from .env
-deploy_env="${DEPLOY_ENV:-production}"
-if [ "${1:-}" != "" ]; then
-  deploy_env="$1"
+if [ -z "${FTP_USER:-}" ]; then
+  read -r -p "FTP username: " FTP_USER
 fi
 
-case "${deploy_env}" in
-  production|staging)
-    ;;
-  *)
-    echo "Error: DEPLOY_ENV must be 'production' or 'staging' (received: ${deploy_env})."
-    exit 1
-    ;;
-esac
-
-if [ "${deploy_env}" = "staging" ]; then
-  build_cmd="npm run build:staging"
-  default_remote_dir="/httpdocs/cofun/__development/"
-else
-  build_cmd="npm run build:prod"
-  default_remote_dir="/httpdocs/"
+if [ -z "${FTP_PASS:-}" ]; then
+  read -r -s -p "FTP password: " FTP_PASS
+  printf '\n'
 fi
 
-echo "==> Environment: ${deploy_env}"
-echo "==> Building site (${build_cmd})..."
-${build_cmd}
+echo "==> Building site..."
+npm run build
 
 echo "==> Deploying to ${FTP_HOST}..."
 
@@ -65,9 +50,7 @@ if command -v ssh-keyscan >/dev/null 2>&1; then
 fi
 
 # determine remote directory locally so it expands correctly
-remote_dir="${FTP_REMOTE_DIR:-${default_remote_dir}}"
-
-echo "==> Target directory: ${remote_dir}"
+remote_dir="${FTP_REMOTE_DIR:-/cofun/cofun/__development/}"
 
 lftp -u "${FTP_USER},${FTP_PASS}" sftp://"${FTP_HOST}" <<LFTP
 set ssl:verify-certificate no

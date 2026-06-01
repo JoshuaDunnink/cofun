@@ -6,25 +6,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:prod": "cross-env DEPLOY_ENV=production astro build",
-    "build:staging": "cross-env DEPLOY_ENV=staging BASE_PATH=/cofun/__development/ SITE_URL=https://cofun.nl/cofun/__development/ astro build",
     "preview": "astro preview",
+    "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1",
+    "deploy:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1 -SetupCredentials",
+    "deploy:cmd": "deploy.cmd",
     "astro": "astro",
-    "deploy:unix": "./deploy.sh",
-    "deploy:unix:staging": "DEPLOY_ENV=staging ./deploy.sh",
-    "deploy:win": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1",
-    "deploy:win:staging": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1 -DeployEnv staging",
     "lint": "prettier --check .",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/tailwind": "^5.1.5",
-    "astro": "^5.5.0",
-    "tailwindcss": "^3.4.19"
+    "astro": "^5.5.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "prettier": "^3.5.0",
     "prettier-plugin-astro": "^0.14.0"
   }

@@ -1,82 +1,176 @@
 param(
-  [ValidateSet('production', 'staging')]
-  [string]$DeployEnv = 'production'
+  [switch]$SetupCredentials,
+  [string]$FtpHost = $env:FTP_HOST,
+  [string]$RemoteDir = $env:FTP_REMOTE_DIR,
+  [string]$CredentialPath = (Join-Path $env:LOCALAPPDATA 'CoFun\deploy-ftp.cred.xml')
 )
 
 $ErrorActionPreference = 'Stop'
 
-if (-not (Test-Path '.env')) {
-  Write-Error 'Error: .env file not found. Copy .env.example and fill in your credentials.'
-}
-
 function Load-EnvFile {
   param([string]$Path)
 
+  if (-not (Test-Path $Path)) {
+    return
+  }
+
   Get-Content -Path $Path | ForEach-Object {
     $line = $_.Trim()
-    if ($line -and -not $line.StartsWith('#')) {
-      $parts = $line.Split('=', 2)
-      if ($parts.Count -eq 2) {
-        $key = $parts[0].Trim()
-        $value = $parts[1].Trim()
+    if (-not $line -or $line.StartsWith('#')) {
+      return
+    }
 
-        if (($value.StartsWith('"') -and $value.EndsWith('"')) -or ($value.StartsWith("'") -and $value.EndsWith("'"))) {
-          $value = $value.Substring(1, $value.Length - 2)
-        }
+    $parts = $line.Split('=', 2)
+    if ($parts.Count -ne 2) {
+      return
+    }
 
-        [System.Environment]::SetEnvironmentVariable($key, $value)
+    $key = $parts[0].Trim()
+    $value = $parts[1].Trim()
+
+    if (($value.StartsWith('"') -and $value.EndsWith('"')) -or ($value.StartsWith("'") -and $value.EndsWith("'"))) {
+      $value = $value.Substring(1, $value.Length - 2)
+    }
+
+    if ($key -in @('FTP_HOST', 'FTP_REMOTE_DIR')) {
+      [System.Environment]::SetEnvironmentVariable($key, $value)
+    }
+  }
+}
+
+function Get-DeployCredential {
+  param([string]$Path)
+
+  if (Test-Path $Path) {
+    return Import-Clixml -Path $Path
+  }
+
+  throw "Secure FTP credential file not found at $Path. Run .\deploy.ps1 -SetupCredentials first."
+}
+
+function Save-DeployCredential {
+  param([string]$Path)
+
+  $directory = Split-Path -Parent $Path
+  if (-not (Test-Path $directory)) {
+    New-Item -ItemType Directory -Path $directory -Force | Out-Null
+  }
+
+  $userName = Read-Host 'FTP username'
+  $securePassword = Read-Host 'FTP password' -AsSecureString
+  $credential = New-Object System.Management.Automation.PSCredential($userName, $securePassword)
+  $credential | Export-Clixml -Path $Path
+
+  Write-Host "==> Credential saved securely to $Path"
+}
+
+Load-EnvFile -Path '.env'
+
+if (-not $FtpHost) {
+  $FtpHost = $env:FTP_HOST
+}
+
+if (-not $RemoteDir) {
+  $RemoteDir = $env:FTP_REMOTE_DIR
+}
+
+if ($SetupCredentials) {
+  Save-DeployCredential -Path $CredentialPath
+  return
+}
+
+if (-not $FtpHost) {
+  throw 'FTP_HOST is required. Set it in .env or pass it as an environment variable.'
+}
+
+$remoteTarget = if ($RemoteDir) { $RemoteDir } else { '/cofun/cofun/__development/' }
+$credential = Get-DeployCredential -Path $CredentialPath
+$username = $credential.UserName
+$password = $credential.GetNetworkCredential().Password
+
+Write-Host '==> Building site...'
+& npm run build
+if ($LASTEXITCODE -ne 0) {
+  exit $LASTEXITCODE
+}
+
+$winscpExecutable = $null
+$winscpCommand = Get-Command winscp.com -ErrorAction SilentlyContinue
+if ($winscpCommand) {
+  $winscpExecutable = $winscpCommand.Source
+}
+
+if (-not $winscpExecutable) {
+  $candidatePaths = @(
+    'C:\Program Files\WinSCP\WinSCP.com',
+    'C:\Program Files (x86)\WinSCP\WinSCP.com',
+    (Join-Path $env:LOCALAPPDATA 'Programs\WinSCP\WinSCP.com'),
+    (Join-Path $env:LOCALAPPDATA 'Microsoft\WinGet\Links\WinSCP.com')
+  )
+
+  foreach ($candidatePath in $candidatePaths) {
+    if (Test-Path $candidatePath) {
+      $winscpExecutable = $candidatePath
+      break
+    }
+  }
+}
+
+if (-not $winscpExecutable) {
+  $wingetPackagesRoot = Join-Path $env:LOCALAPPDATA 'Microsoft\WinGet\Packages'
+  if (Test-Path $wingetPackagesRoot) {
+    $packageMatch = Get-ChildItem -Path $wingetPackagesRoot -Directory -Filter 'WinSCP.WinSCP*' -ErrorAction SilentlyContinue |
+      Sort-Object LastWriteTime -Descending |
+      Select-Object -First 1
+
+    if ($packageMatch) {
+      $packageWinScp = Join-Path $packageMatch.FullName 'WinSCP.com'
+      if (Test-Path $packageWinScp) {
+        $winscpExecutable = $packageWinScp
       }
     }
   }
 }
 
-Load-EnvFile -Path '.env'
-
-if (-not $env:FTP_HOST -or -not $env:FTP_USER -or -not $env:FTP_PASS) {
-  Write-Error 'Error: FTP_HOST, FTP_USER, and FTP_PASS must be set in .env'
+if (-not $winscpExecutable) {
+  throw 'WinSCP was not found. Install WinSCP first (for example: winget install WinSCP.WinSCP).'
 }
-
-if ($DeployEnv -eq 'staging') {
-  $buildScript = 'build:staging'
-  $defaultRemoteDir = '/httpdocs/cofun/__development/'
-}
-else {
-  $buildScript = 'build:prod'
-  $defaultRemoteDir = '/httpdocs/'
-}
-
-$remoteDir = if ($env:FTP_REMOTE_DIR) { $env:FTP_REMOTE_DIR } else { $defaultRemoteDir }
-
-Write-Host "==> Environment: $DeployEnv"
-Write-Host "==> Building site (npm run $buildScript)..."
-& npm run $buildScript
-if ($LASTEXITCODE -ne 0) {
-  exit $LASTEXITCODE
-}
-
-$winscpCommand = Get-Command winscp.com -ErrorAction SilentlyContinue
-if (-not $winscpCommand) {
-  Write-Error "Error: winscp.com not found. Install WinSCP first. Example: winget install WinSCP.WinSCP"
-}
-
-Write-Host "==> Deploying to $($env:FTP_HOST)..."
-Write-Host "==> Target directory: $remoteDir"
-
-$encodedUser = [Uri]::EscapeDataString($env:FTP_USER)
-$encodedPass = [Uri]::EscapeDataString($env:FTP_PASS)
-$openTarget = "sftp://${encodedUser}:${encodedPass}@$($env:FTP_HOST)/"
 
 $tempScript = [System.IO.Path]::GetTempFileName()
-@(
+$normalizedRemoteTarget = $remoteTarget.Trim()
+if (-not $normalizedRemoteTarget.StartsWith('/')) {
+  $normalizedRemoteTarget = "/$normalizedRemoteTarget"
+}
+$normalizedRemoteTarget = $normalizedRemoteTarget.TrimEnd('/')
+
+$mkdirCommands = @()
+$runningPath = ''
+foreach ($part in $normalizedRemoteTarget.Split('/', [System.StringSplitOptions]::RemoveEmptyEntries)) {
+  $runningPath = "$runningPath/$part"
+  $mkdirCommands += "mkdir `"$runningPath`""
+}
+
+$scriptLines = @(
   'option batch abort'
   'option confirm off'
-  "open `"$openTarget`" -hostkey=*"
-  "synchronize remote -delete `"dist`" `"$remoteDir`""
+  "open sftp://$username`:$password@$FtpHost/ -hostkey=*"
+  'option batch continue'
+)
+
+$scriptLines += $mkdirCommands
+$scriptLines += @(
+  'option batch abort'
+  "synchronize remote -delete `"dist`" `"$normalizedRemoteTarget`""
   'exit'
-) | Set-Content -Path $tempScript -Encoding ASCII
+)
+
+$scriptLines | Set-Content -Path $tempScript -Encoding ASCII
 
 try {
-  & $winscpCommand.Source '/ini=nul' "/script=$tempScript"
+  Write-Host "==> Deploying to $FtpHost"
+  Write-Host "==> Target directory: $remoteTarget"
+
+  & $winscpExecutable '/ini=nul' "/script=$tempScript"
   if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
   }

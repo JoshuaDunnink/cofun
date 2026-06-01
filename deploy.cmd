@@ -1,8 +1,10 @@
 @echo off
 setlocal
 
-set "DEPLOY_ENV=%~1"
-if "%DEPLOY_ENV%"=="" set "DEPLOY_ENV=production"
+if /I "%~1"=="setup" (
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0deploy.ps1" -SetupCredentials
+  exit /b %ERRORLEVEL%
+)
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0deploy.ps1" -DeployEnv %DEPLOY_ENV%
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0deploy.ps1" %*
 exit /b %ERRORLEVEL%

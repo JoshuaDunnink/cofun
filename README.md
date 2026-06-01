@@ -39,13 +39,10 @@ De site is beschikbaar op `http://localhost:4321`.
 | ----------------- | -------------------------------- |
 | `npm run dev`     | Start de lokale ontwikkelserver  |
 | `npm run build`   | Bouw de site voor productie      |
-| `npm run build:prod` | Forceer productiebuild voor root (`/`) |
-| `npm run build:staging` | Build voor staging op `/cofun/__development/` |
 | `npm run preview` | Preview de productiebuild lokaal |
-| `npm run deploy:win` | Deploy via PowerShell + WinSCP (productie) |
-| `npm run deploy:win:staging` | Deploy via PowerShell + WinSCP (staging) |
-| `npm run deploy:unix` | Deploy via `deploy.sh` (productie) |
-| `npm run deploy:unix:staging` | Deploy via `deploy.sh` (staging) |
+| `npm run deploy:setup` | Sla FTP-credentials versleuteld op in je Windows-profiel |
+| `npm run deploy`  | Deploy via PowerShell + WinSCP   |
+| `npm run deploy:cmd` | Deploy via CMD wrapper          |
 | `npm run format`  | Format code met Prettier         |
 | `npm run lint`    | Controleer formatting            |
 
@@ -93,18 +90,12 @@ cofun/
 ## Building for Production
 
 ```bash
-npm run build:prod
+npm run build
 ```
 
 De output verschijnt in `dist/`. Dit is de map die naar Strato wordt geüpload.
 
-## Building for Staging (/cofun/__development/)
-
-```bash
-npm run build:staging
-```
-
-Deze build zet automatisch de Astro `base` op `/cofun/__development/`, zodat links en assets correct werken onder dat pad.
+De site wordt gebouwd voor één vaste deploymentlocatie: `/cofun/__development/`.
 
 ---
 
@@ -129,50 +120,49 @@ De workflow:
 3. Bouwt de site
 4. Uploadt `dist/` naar `/httpdocs/` op Strato
 
-### Handmatig (deploy.sh)
+### Handmatig op Windows (aanbevolen)
 
-```bash
-cp .env.example .env
-# Vul je FTP-credentials in .env
-./deploy.sh production
-# of voor staging
-./deploy.sh staging
-```
-
-### Handmatig op Windows (PowerShell)
-
-Voorwaarde: WinSCP CLI (`winscp.com`) moet geïnstalleerd zijn.
+1. Installeer WinSCP als dat nog niet is gebeurd:
 
 ```powershell
 winget install WinSCP.WinSCP
-# of via Chocolatey:
-# choco install winscp
-
-Copy-Item .env.example .env
-# Vul je FTP-credentials in .env
-
-# Productie (root)
-powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy.ps1 -DeployEnv production
-
-# Staging (/cofun/__development/)
-powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy.ps1 -DeployEnv staging
 ```
 
-### Handmatig op Windows (CMD)
+2. Sla de FTP-credentials versleuteld op in je Windows-profiel:
+
+```powershell
+npm run deploy:setup
+```
+
+3. Vul alleen de niet-gevoelige instellingen in `.env` in, bijvoorbeeld `FTP_HOST`.
+
+4. Deploy de site naar `/cofun/cofun/__development/`:
+
+```powershell
+npm run deploy
+```
+
+Of vanuit Command Prompt:
 
 ```cmd
-copy .env.example .env
-:: Vul je FTP-credentials in .env
+npm run deploy:cmd
+```
 
-deploy.cmd production
-deploy.cmd staging
+De credentials worden opgeslagen als een versleuteld CLIXML-bestand onder je Windows-profiel en niet in de repository.
+
+### Handmatig met deploy.sh
+
+```bash
+cp .env.example .env
+# Vul alleen de host in .env; credentials worden op Windows veilig opgeslagen
+./deploy.sh
 ```
 
 ### Handmatig (FileZilla)
 
 1. Open FileZilla
 2. Verbind met je Strato FTP-server
-3. Upload de inhoud van `dist/` naar `/httpdocs/`
+3. Upload de inhoud van `dist/` naar `/cofun/cofun/__development/`
 
 ---
 
@@ -187,18 +177,12 @@ cp .env.example .env
 | Variabele        | Beschrijving                    |
 | ---------------- | ------------------------------- |
 | `FTP_HOST`       | Strato FTP-hostnaam             |
-| `FTP_USER`       | FTP-gebruikersnaam              |
-| `FTP_PASS`       | FTP-wachtwoord                  |
-| `FTP_REMOTE_DIR` | Optioneel uploadpad (overschrijft defaults) |
-| `DEPLOY_ENV`     | `production` of `staging` (default: `production`) |
-| `SITE_URL`       | Optionele override voor publieke URL |
-
-Standaard uploadpaden zonder `FTP_REMOTE_DIR`:
-
-- `production` → `/httpdocs/`
-- `staging` → `/httpdocs/cofun/__development/`
+| `FTP_REMOTE_DIR` | Webroot (standaard: `/cofun/cofun/__development/`) |
+| `SITE_URL`       | Publieke URL van de site        |
 
 **Let op:** `.env` staat in `.gitignore` en wordt nooit gecommit.
+
+De gebruikersnaam en het wachtwoord worden voor Windows-deploys opgeslagen in een versleuteld bestand in je eigen profielmap, niet in `.env` en niet in de repository.
 
 ---
 
