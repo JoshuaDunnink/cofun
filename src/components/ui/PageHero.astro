@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../../i18n/translations';
+
 interface Props {
   image: string;
   alt?: string;
@@ -20,6 +22,7 @@ const {
   titleColor = 'white',
   align = 'center',
 } = Astro.props;
+const basePath = Astro.site?.pathname ?? '/';
 
 const overlays: Record<string, string> = {
   'dark-left': 'bg-gradient-to-r from-black/75 via-black/45 to-transparent',
@@ -34,7 +37,7 @@ const alignCls = align === 'bottom' ? 'items-end pb-16' : 'items-center';
 
 <section class:list={['relative flex min-h-[60vh] overflow-hidden', alignCls]}>
   <div class="absolute inset-0 z-0">
-    <img src={image} alt={alt} class="h-full w-full object-cover" width="1280" height="720" />
+    <img src={withBase(image, basePath)} alt={alt} class="h-full w-full object-cover" width="1280" height="720" />
     <div class:list={['absolute inset-0', overlays[overlay]]}></div>
   </div>
   <div class="relative z-10 mx-auto w-full max-w-container-max px-margin-mobile md:px-margin-desktop">

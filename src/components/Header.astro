@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getNavItems, getLocalePath } from '../i18n/translations';
+import { useTranslations, getNavItems, getLocalePath, withBase } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -8,20 +8,34 @@ interface Props {
 
 const { locale = 'nl' } = Astro.props;
 const t = useTranslations(locale);
-const navItems = getNavItems(locale);
+const basePath = Astro.site?.pathname ?? '/';
+const navItems = getNavItems(locale, basePath);
 
 const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const normalizedBasePath = basePath.replace(/\/+$/, '') || '/';
+
+const stripBase = (path: string) => {
+  if (normalizedBasePath !== '/' && path.startsWith(normalizedBasePath)) {
+    const stripped = path.slice(normalizedBasePath.length);
+    return stripped || '/';
+  }
+  return path;
+};
+
+const currentPath = stripBase(rawPath).replace(/\/+$/, '') || '/';
+
 const isActive = (href: string) => {
-  const h = href.replace(/\/+$/, '') || '/';
-  return h === rawPath;
+  const h = stripBase((href.replace(/\/+$/, '') || '/')).replace(/\/+$/, '') || '/';
+  return h === currentPath;
 };
 
 /* Language switch: toggle the /en prefix while keeping the current page */
 const switchLabel = t('lang.switch');
+const localeAgnosticPath = currentPath.replace(/^\/en(?=\/|$)/, '') || '/';
 const switchPath =
   locale === 'nl'
-    ? `/en${rawPath === '/' ? '' : rawPath}`
-    : rawPath.replace(/^\/en/, '') || '/';
+    ? getLocalePath('en', localeAgnosticPath, basePath)
+    : getLocalePath('nl', localeAgnosticPath, basePath);
 ---
 
 <header class="sticky top-0 z-50 w-full bg-surface/95 backdrop-blur shadow-sm">
@@ -29,9 +43,9 @@ const switchPath =
     class="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop"
     aria-label={t('nav.menu')}
   >
-    <a href={getLocalePath(locale, '/')} class="flex items-center gap-2" aria-label="CoFun home">
+    <a href={getLocalePath(locale, '/', basePath)} class="flex items-center gap-2" aria-label="CoFun home">
       <img
-        src="/images/logo-cofun-primary.png"
+        src={withBase('/images/logo-cofun-primary.png', basePath)}
         alt="CoFun"
         width="140"
         height="40"

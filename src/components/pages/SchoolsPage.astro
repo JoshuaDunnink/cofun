@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getLocalePath } from '../../i18n/translations';
+import { useTranslations, getLocalePath, withBase } from '../../i18n/translations';
 import type { Locale } from '../../i18n/translations';
 import Button from '../ui/Button.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
@@ -11,7 +11,8 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const p = (path: string) => getLocalePath(locale, path);
+const basePath = Astro.site?.pathname ?? '/';
+const p = (path: string) => getLocalePath(locale, path, basePath);
 
 const valueCards = [
   { icon: 'school', wrap: 'bg-primary-fixed', iconColor: 'text-primary', title: t('schools.value.dropout.title'), text: t('schools.value.dropout.text'), border: 'border-outline-variant' },
@@ -72,7 +73,7 @@ const results = [
     <div class="relative reveal">
       <div class="aspect-square overflow-hidden rounded-2xl shadow-xl">
         <img
-          src="/images/redesign/team-collaboration.png"
+          src={withBase('/images/redesign/team-collaboration.png', basePath)}
           alt=""
           class="h-full w-full object-cover"
           width="600"

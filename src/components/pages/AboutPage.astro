@@ -11,7 +11,8 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const p = (path: string) => getLocalePath(locale, path);
+const basePath = Astro.site?.pathname ?? '/';
+const p = (path: string) => getLocalePath(locale, path, basePath);
 
 const values = [
   { icon: 'emoji_objects', color: 'text-growth-orange', title: t('about.value.innovation.title'), text: t('about.value.innovation.text') },

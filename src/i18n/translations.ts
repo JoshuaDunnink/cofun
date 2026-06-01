@@ -7,6 +7,28 @@ export type Locale = "nl" | "en";
 export const defaultLocale: Locale = "nl";
 export const locales: Locale[] = ["nl", "en"];
 
+function normalizePath(path: string): string {
+  if (!path.startsWith("/")) return `/${path}`;
+  return path;
+}
+
+function normalizeBase(basePath: string): string {
+  if (!basePath || basePath === "/") return "/";
+
+  const withLeadingSlash = basePath.startsWith("/") ? basePath : `/${basePath}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+export function withBase(path: string, basePath = "/"): string {
+  const normalized = normalizePath(path);
+  const normalizedBase = normalizeBase(basePath);
+
+  if (normalizedBase === "/") return normalized;
+  if (normalized.startsWith(normalizedBase)) return normalized;
+
+  return `${normalizedBase}${normalized.slice(1)}`;
+}
+
 export const translations = {
   nl: {
     /* ── Brand / generic ─────────────────────────────────────────────── */
@@ -632,20 +654,24 @@ export function useTranslations(locale: Locale) {
 }
 
 /** Returns a localised path, prefixing non-default locales. */
-export function getLocalePath(locale: Locale, path: string): string {
-  if (locale === defaultLocale) return path;
-  return `/en${path === "/" ? "" : path}` || "/en/";
+export function getLocalePath(locale: Locale, path: string, basePath = "/"): string {
+  const normalizedPath = normalizePath(path);
+  const localizedPath =
+    locale === defaultLocale
+      ? normalizedPath
+      : `/en${normalizedPath === "/" ? "" : normalizedPath}`;
+
+  return withBase(localizedPath || "/", basePath);
 }
 
 /** Returns all navigation items for a given locale. */
-export function getNavItems(locale: Locale) {
+export function getNavItems(locale: Locale, basePath = "/") {
   const t = useTranslations(locale);
-  const prefix = locale === defaultLocale ? "" : "/en";
   return [
-    { label: t("nav.home"), href: `${prefix}/` },
-    { label: t("nav.about"), href: `${prefix}/over-ons` },
-    { label: t("nav.curriculum"), href: `${prefix}/lespakket` },
-    { label: t("nav.schools"), href: `${prefix}/voor-scholen` },
-    { label: t("nav.contact"), href: `${prefix}/contact` },
+    { label: t("nav.home"), href: getLocalePath(locale, "/", basePath) },
+    { label: t("nav.about"), href: getLocalePath(locale, "/over-ons", basePath) },
+    { label: t("nav.curriculum"), href: getLocalePath(locale, "/lespakket", basePath) },
+    { label: t("nav.schools"), href: getLocalePath(locale, "/voor-scholen", basePath) },
+    { label: t("nav.contact"), href: getLocalePath(locale, "/contact", basePath) },
   ];
 }

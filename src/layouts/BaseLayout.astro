@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { useTranslations } from '../i18n/translations';
+import { useTranslations, withBase } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 import '../styles/global.css';
 
@@ -25,16 +25,29 @@ const t = useTranslations(locale);
 const htmlLang = locale === 'nl' ? 'nl' : 'en';
 
 const site = Astro.site ?? new URL('https://cofun.nl');
+const siteBasePath = site.pathname || '/';
 
 /* Normalise current path (strip trailing slash except root) */
 const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const nlPath = locale === 'en' ? rawPath.replace(/^\/en/, '') || '/' : rawPath;
-const enPath = locale === 'en' ? rawPath : `/en${rawPath === '/' ? '' : rawPath}`;
+const basePath = siteBasePath.replace(/\/+$/, '') || '/';
+const stripBase = (path: string) => {
+  if (basePath !== '/' && path.startsWith(basePath)) {
+    const stripped = path.slice(basePath.length);
+    return stripped || '/';
+  }
+  return path;
+};
 
-const canonical = new URL(rawPath, site).href;
-const nlHref = new URL(nlPath, site).href;
-const enHref = new URL(enPath, site).href;
-const ogImage = new URL(image, site).href;
+const localPath = stripBase(rawPath).replace(/\/+$/, '') || '/';
+const localNlPath = localPath.replace(/^\/en(?=\/|$)/, '') || '/';
+const localEnPath = `/en${localNlPath === '/' ? '' : localNlPath}`;
+
+const toSiteHref = (path: string) => new URL(path === '/' ? '' : path.slice(1), site).href;
+
+const canonical = toSiteHref(localPath);
+const nlHref = toSiteHref(localNlPath);
+const enHref = toSiteHref(localEnPath);
+const ogImage = new URL(withBase(image, siteBasePath), site).href;
 const fullTitle = `${title} | CoFun`;
 ---
 
@@ -46,7 +59,7 @@ const fullTitle = `${title} | CoFun`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/png" href="/images/logo-cofun-primary.png" />
+    <link rel="icon" type="image/png" href={withBase('/images/logo-cofun-primary.png', siteBasePath)} />
     <link rel="canonical" href={canonical} />
 
     {noindex && <meta name="robots" content="noindex, nofollow" />}

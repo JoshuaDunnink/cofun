@@ -39,7 +39,13 @@ De site is beschikbaar op `http://localhost:4321`.
 | ----------------- | -------------------------------- |
 | `npm run dev`     | Start de lokale ontwikkelserver  |
 | `npm run build`   | Bouw de site voor productie      |
+| `npm run build:prod` | Forceer productiebuild voor root (`/`) |
+| `npm run build:staging` | Build voor staging op `/cofun/__development/` |
 | `npm run preview` | Preview de productiebuild lokaal |
+| `npm run deploy:win` | Deploy via PowerShell + WinSCP (productie) |
+| `npm run deploy:win:staging` | Deploy via PowerShell + WinSCP (staging) |
+| `npm run deploy:unix` | Deploy via `deploy.sh` (productie) |
+| `npm run deploy:unix:staging` | Deploy via `deploy.sh` (staging) |
 | `npm run format`  | Format code met Prettier         |
 | `npm run lint`    | Controleer formatting            |
 
@@ -87,10 +93,18 @@ cofun/
 ## Building for Production
 
 ```bash
-npm run build
+npm run build:prod
 ```
 
 De output verschijnt in `dist/`. Dit is de map die naar Strato wordt geüpload.
+
+## Building for Staging (/cofun/__development/)
+
+```bash
+npm run build:staging
+```
+
+Deze build zet automatisch de Astro `base` op `/cofun/__development/`, zodat links en assets correct werken onder dat pad.
 
 ---
 
@@ -120,7 +134,38 @@ De workflow:
 ```bash
 cp .env.example .env
 # Vul je FTP-credentials in .env
-make deploy
+./deploy.sh production
+# of voor staging
+./deploy.sh staging
+```
+
+### Handmatig op Windows (PowerShell)
+
+Voorwaarde: WinSCP CLI (`winscp.com`) moet geïnstalleerd zijn.
+
+```powershell
+winget install WinSCP.WinSCP
+# of via Chocolatey:
+# choco install winscp
+
+Copy-Item .env.example .env
+# Vul je FTP-credentials in .env
+
+# Productie (root)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy.ps1 -DeployEnv production
+
+# Staging (/cofun/__development/)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\deploy.ps1 -DeployEnv staging
+```
+
+### Handmatig op Windows (CMD)
+
+```cmd
+copy .env.example .env
+:: Vul je FTP-credentials in .env
+
+deploy.cmd production
+deploy.cmd staging
 ```
 
 ### Handmatig (FileZilla)
@@ -144,8 +189,14 @@ cp .env.example .env
 | `FTP_HOST`       | Strato FTP-hostnaam             |
 | `FTP_USER`       | FTP-gebruikersnaam              |
 | `FTP_PASS`       | FTP-wachtwoord                  |
-| `FTP_REMOTE_DIR` | Webroot (standaard: /httpdocs/) |
-| `SITE_URL`       | Publieke URL van de site        |
+| `FTP_REMOTE_DIR` | Optioneel uploadpad (overschrijft defaults) |
+| `DEPLOY_ENV`     | `production` of `staging` (default: `production`) |
+| `SITE_URL`       | Optionele override voor publieke URL |
+
+Standaard uploadpaden zonder `FTP_REMOTE_DIR`:
+
+- `production` → `/httpdocs/`
+- `staging` → `/httpdocs/cofun/__development/`
 
 **Let op:** `.env` staat in `.gitignore` en wordt nooit gecommit.
 

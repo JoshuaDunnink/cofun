@@ -1,5 +1,5 @@
 ---
-import { useTranslations, getLocalePath } from '../../i18n/translations';
+import { useTranslations, getLocalePath, withBase } from '../../i18n/translations';
 import type { Locale } from '../../i18n/translations';
 import Button from '../ui/Button.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
@@ -11,7 +11,8 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const p = (path: string) => getLocalePath(locale, path);
+const basePath = Astro.site?.pathname ?? '/';
+const p = (path: string) => getLocalePath(locale, path, basePath);
 
 const groups = [
   {
@@ -98,7 +99,7 @@ const benefits = [
           </div>
           <div class="relative h-48 w-full flex-1 md:h-full">
             <img
-              src="/images/redesign/classroom.png"
+              src={withBase('/images/redesign/classroom.png', basePath)}
               alt=""
               class="absolute inset-0 h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
               width="480"
