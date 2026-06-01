@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="nl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - CoFun | Spelend beter leren</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#ebedf9",
+                        "growth-orange": "#E67E22",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#f3fffe",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#002020",
+                        "on-surface": "#181c23",
+                        "surface-tint": "#006a6a",
+                        "primary-fixed": "#92f2f2",
+                        "surface-variant": "#dfe2ed",
+                        "on-background": "#181c23",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-container-high": "#e5e8f3",
+                        "on-primary-container": "#f3fffe",
+                        "secondary-fixed": "#ffddaf",
+                        "surface": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "secondary": "#805600",
+                        "outline": "#6e7979",
+                        "on-secondary-fixed-variant": "#614000",
+                        "tertiary": "#416261",
+                        "primary": "#006767",
+                        "tertiary-fixed": "#c6e9e9",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004f50",
+                        "surface-bright": "#f9f9ff",
+                        "surface-dim": "#d7dae5",
+                        "on-secondary-container": "#734d00",
+                        "on-secondary-fixed": "#281800",
+                        "surface-container-highest": "#dfe2ed",
+                        "secondary-container": "#ffbd52",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-gray": "#F5F7F9",
+                        "background": "#f9f9ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eef0fc",
+                        "primary-fixed-dim": "#75d6d5",
+                        "outline-variant": "#bdc9c8",
+                        "on-tertiary-fixed-variant": "#2c4c4c",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#018282",
+                        "inverse-surface": "#2c3039",
+                        "tertiary-fixed-dim": "#abcdcd",
+                        "tertiary-container": "#5a7a7a",
+                        "success-mint": "#27AE60",
+                        "on-surface-variant": "#3e4949",
+                        "secondary-fixed-dim": "#fcbb4e",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#75d6d5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "section-gap": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+        .bento-card {
+            background: white;
+            border: 1px solid #E1E4E8;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-surface shadow-sm h-20 flex items-center">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="text-headline-md font-headline-md text-primary">CoFun</div>
+<div class="hidden md:flex items-center gap-8 font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Over ons</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Het lespakket</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Voor scholen</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors">Inloggen</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-sm text-label-sm scale-95 active:scale-90 transition-transform">Aan de slag</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative w-full h-[50vh] min-h-[400px] overflow-hidden">
+<img alt="CoFun Professional Learning Environment" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9mDuDljgfLOnC3xQsPezrkf3rmBRBSx9RLMAj1nCA4re1cFmeFvS9dqrJkUq7rXuaW5yhBP6sdsdYnKfhFdYQwfbu3phMO1dttarwXAHTwj6ZeK5FC36-EXqeYKx7riCgKmrFangmVx7sP6CZKqCMZtT2iPuv4ZtT_0Et-00z8PtdWRyIk-B5pvPJc1WCwQGEoStUMvFO-ue_j4S4LEPwUAbvaSWyng4qqrZ3lbiqdoihnUKUd2-eOk1V45Ov1Q48ITKsuB3vMLo-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+<div class="absolute bottom-12 left-0 w-full px-margin-desktop max-w-container-max mx-auto">
+<h1 class="font-display-lg text-display-lg text-primary mb-2 max-w-2xl">Laten we samen bouwen aan beter onderwijs.</h1>
+<p class="text-body-lg text-on-surface-variant max-w-xl">Heeft u vragen over CoFun of wilt u een demo inplannen? We staan klaar om u en uw school te ondersteunen bij spelend leren.</p>
+</div>
+</section>
+<!-- Main Content (Bento Grid Layout) -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-section-gap">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Contact Form Card -->
+<div class="lg:col-span-7 bento-card rounded-xl p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Stuur ons een bericht</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Naam</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface-container-lowest transition-all" placeholder="Uw naam" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">School / Organisatie</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface-container-lowest transition-all" placeholder="Naam van uw school" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Email</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface-container-lowest transition-all" placeholder="uw@email.nl" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Bericht</label>
+<textarea class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface-container-lowest transition-all" placeholder="Hoe kunnen we u helpen?" rows="5"></textarea>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-10 py-4 rounded-lg font-label-sm text-label-sm hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+                            Verstuur bericht
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</form>
+</div>
+<!-- Info & Sidebar -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Contact Details -->
+<div class="bento-card rounded-xl p-8 border-t-4 border-t-secondary-container">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Direct contact</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Email ons</p>
+<a class="font-body-lg text-body-lg font-semibold text-on-surface hover:text-primary transition-colors" href="mailto:info@cofun.nl">info@cofun.nl</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bel ons</p>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">+31 (0) 20 123 4567</p>
+</div>
+</div>
+</div>
+</div>
+<!-- FAQ Preview -->
+<div class="bento-card rounded-xl p-8 bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Veelgestelde vragen</h3>
+<div class="space-y-4">
+<div class="group cursor-pointer">
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-2 group-hover:underline">
+                                    Bieden jullie ook demo's aan?
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</p>
+<p class="text-on-surface-variant text-[13px] mt-1">Zeker! We komen graag langs op school om CoFun te laten zien aan het team.</p>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<div class="group cursor-pointer">
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-2 group-hover:underline">
+                                    Wat is de levertijd van materialen?
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</p>
+<p class="text-on-surface-variant text-[13px] mt-1">Voor fysieke pakketten hanteren we een levertijd van 3 tot 5 werkdagen.</p>
+</div>
+</div>
+<a class="inline-block mt-6 font-label-sm text-label-sm text-growth-orange font-bold uppercase tracking-wider" href="#">Bekijk alle FAQ's</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Closing Message -->
+<section class="bg-surface-container-highest py-20 px-margin-desktop">
+<div class="max-w-container-max mx-auto text-center">
+<span class="bg-secondary-container/20 text-secondary px-4 py-1.5 rounded-full font-label-sm text-[12px] uppercase tracking-widest mb-6 inline-block">Samen groeien</span>
+<h2 class="font-display-lg text-display-lg text-primary mb-6">Klaar om de klas te transformeren?</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+                    Bij CoFun geloven we dat elke leerkracht de tools verdient om passie en plezier terug te brengen in het onderwijs. Geen vraag is te klein en we denken graag met u mee over de beste oplossing voor uw klas.
+                </p>
+<div class="flex flex-wrap justify-center gap-4">
+<img alt="Team Member 1" class="w-16 h-16 rounded-full border-4 border-white shadow-md" data-alt="Close-up studio portrait of a friendly Dutch female educator with a warm, welcoming smile. She is wearing professional yet approachable attire in soft teal and white tones. The background is a clean, minimalist studio setting with soft lighting, reflecting the CoFun corporate-playful aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqFjy4H3hbXuc9fzD1oAKusLoMKINjEJ444VW2o5I7xVZus5HScBQvfESDoDL4s5cDUTQ6Ki5QBMsYGCarxzfNNqy_W9R66DSYVPp63xFcwIHKoHGA7N7YS46_52uWtmAjjnFezHtWJeRJdBGTZ6D__6EC7jBvdj32QYRePszb1weTYwO7LeZsb6Lw_w5gyBSZX0T_9fXkyqXL4Y83-XcI4wjKuN2e2_qG0t38sJNYImGx6--HNHvn3EN8rt2NO1BSbgAsfFSY-616"/>
+<img alt="Team Member 2" class="w-16 h-16 rounded-full border-4 border-white shadow-md -ml-6" data-alt="Portrait of a cheerful male education specialist with glasses, smiling genuinely at the camera. He represents the CoFun team of professional developers. The lighting is bright and natural, creating an atmosphere of reliability and vibrant energy consistent with a modern educational tech brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFeHXO537hd8IF1c9CU6HymjtCCV7JweQHdQXkfFn0tV_DG2Py1Ax8irIdk2ZqNfLO59uI1xm47LZpT2uetfCApt626ATCeZplSMqX1AJQ-qrIWbz9EiZjHQUWAMyhytHH1hsoo0JVg0qQUvL4aWZ7CSeLkehem_9drKr4sDvC5Mmtu6bSSP0FyKxZESdtMFvK4319H4z4JPaS9QTlnYLPF0saiQd4cSH_B8SNfvUfUwy_rlfxT82C2_BMYtMoR0lPLoo1G45-CQFm"/>
+</div>
+<p class="mt-4 font-label-sm text-label-sm text-on-surface">Ons team staat voor u klaar.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-base max-w-container-max mx-auto h-24">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<span class="text-headline-md font-headline-md text-primary">CoFun</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant opacity-80">© 2024 CoFun. Spelend beter leren.</span>
+</div>
+<div class="flex gap-8 mt-4 md:mt-0 font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-growth-orange transition-colors" href="#">Privacybeleid</a>
+<a class="text-on-surface-variant hover:text-growth-orange transition-colors" href="#">Algemene Voorwaarden</a>
+<a class="text-on-surface-variant hover:text-growth-orange transition-colors" href="#">Cookies</a>
+<a class="text-on-surface-variant hover:text-growth-orange transition-colors" href="#">FAQ</a>
+</div>
+</div>
+</footer>
+<script>
+        // Soft entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.bento-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

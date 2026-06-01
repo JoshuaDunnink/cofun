@@ -1,0 +1,56 @@
+---
+interface Props {
+  image: string;
+  alt?: string;
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  overlay?: 'dark-left' | 'dark-bottom' | 'light-bottom';
+  titleColor?: 'white' | 'primary';
+  align?: 'center' | 'bottom';
+}
+
+const {
+  image,
+  alt = '',
+  badge,
+  title,
+  subtitle,
+  overlay = 'dark-left',
+  titleColor = 'white',
+  align = 'center',
+} = Astro.props;
+
+const overlays: Record<string, string> = {
+  'dark-left': 'bg-gradient-to-r from-black/75 via-black/45 to-transparent',
+  'dark-bottom': 'bg-gradient-to-t from-black/80 via-black/40 to-transparent',
+  'light-bottom': 'bg-gradient-to-t from-surface via-surface/60 to-transparent',
+};
+
+const titleCls = titleColor === 'white' ? 'text-white' : 'text-primary';
+const subCls = titleColor === 'white' ? 'text-white/90' : 'text-on-surface-variant';
+const alignCls = align === 'bottom' ? 'items-end pb-16' : 'items-center';
+---
+
+<section class:list={['relative flex min-h-[60vh] overflow-hidden', alignCls]}>
+  <div class="absolute inset-0 z-0">
+    <img src={image} alt={alt} class="h-full w-full object-cover" width="1280" height="720" />
+    <div class:list={['absolute inset-0', overlays[overlay]]}></div>
+  </div>
+  <div class="relative z-10 mx-auto w-full max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-2xl space-y-6 reveal">
+      {
+        badge && (
+          <span class="inline-block rounded-full bg-secondary-container px-4 py-1.5 font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-container">
+            {badge}
+          </span>
+        )
+      }
+      <h1 class:list={['font-heading text-display-lg-mobile font-bold leading-tight md:text-display-lg', titleCls]}>
+        {title}
+      </h1>
+      {subtitle && <p class:list={['max-w-xl font-body-lg text-body-lg', subCls]}>{subtitle}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

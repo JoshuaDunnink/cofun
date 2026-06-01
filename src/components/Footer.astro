@@ -1,165 +1,93 @@
 ---
-import {
-  useTranslations,
-  getNavItems,
-  getLocalePath,
-} from "../i18n/translations";
-import type { Locale } from "../i18n/translations";
+import { useTranslations, getNavItems, getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
 
 interface Props {
   locale?: Locale;
 }
 
-const { locale = "nl" } = Astro.props;
+const { locale = 'nl' } = Astro.props;
 const t = useTranslations(locale);
 const navItems = getNavItems(locale);
+const email = t('footer.email');
 ---
 
-<footer class="site-footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <a
-        href={getLocalePath(locale, "/")}
-        class="footer__logo"
-        aria-label="CoFun Home"
-      >
+<footer class="w-full bg-surface-container-highest pt-section-gap">
+  <div
+    class="mx-auto mb-16 grid max-w-container-max grid-cols-1 gap-gutter px-margin-mobile md:grid-cols-4 md:px-margin-desktop"
+  >
+    <div class="space-y-4">
+      <a href={getLocalePath(locale, '/')} aria-label="CoFun home">
         <img
           src="/images/logo-cofun-primary.png"
-          alt="CoFun logo"
-          width="120"
-          height="42"
+          alt="CoFun"
+          width="140"
+          height="40"
+          class="h-9 w-auto object-contain"
         />
       </a>
-      <p class="footer__tagline">{t("footer.tagline")}</p>
+      <p class="max-w-xs font-body-md text-on-surface-variant">{t('footer.tagline')}</p>
+      <a
+        href={`mailto:${email}`}
+        class="inline-flex items-center gap-2 text-primary transition-colors hover:text-secondary"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">alternate_email</span>
+        <span class="font-label-sm">{email}</span>
+      </a>
     </div>
 
-    <div class="footer__links">
-      <h4 class="footer__heading">{t("footer.nav")}</h4>
-      <ul class="footer__nav-list">
+    <div class="space-y-4">
+      <h2 class="font-heading text-base font-bold text-on-surface">{t('footer.nav')}</h2>
+      <ul class="space-y-2">
         {
           navItems.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a
+                href={item.href}
+                class="text-on-surface-variant transition-colors hover:text-secondary"
+              >
+                {item.label}
+              </a>
             </li>
           ))
         }
       </ul>
     </div>
 
-    <div class="footer__contact">
-      <h4 class="footer__heading">{t("footer.contact")}</h4>
+    <div class="space-y-4">
+      <h2 class="font-heading text-base font-bold text-on-surface">{t('footer.contact')}</h2>
       <p>
-        <a href={`mailto:${t("footer.email")}`}>{t("footer.email")}</a>
+        <a
+          href={`mailto:${email}`}
+          class="text-on-surface-variant transition-colors hover:text-secondary"
+        >
+          {email}
+        </a>
       </p>
+      <div
+        class="flex items-start gap-3 rounded-xl border border-outline-variant/30 bg-white/50 p-4"
+      >
+        <span class="material-symbols-outlined text-secondary" aria-hidden="true">construction</span>
+        <p class="text-xs text-on-surface-variant">{t('footer.construction')}</p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="font-heading text-base font-bold text-on-surface">{t('footer.legal')}</h2>
+      <ul class="space-y-2">
+        <li>
+          <span class="text-on-surface-variant/70">{t('footer.privacy')}</span>
+        </li>
+        <li>
+          <span class="text-on-surface-variant/70">{t('footer.terms')}</span>
+        </li>
+      </ul>
     </div>
   </div>
 
-  <div class="footer__construction-notice">
-    <div class="container">
-      <p>🚧 {t("footer.construction")}</p>
-    </div>
-  </div>
-
-  <div class="footer__bottom">
-    <div class="container">
-      <p>{t("footer.copyright")}</p>
-    </div>
+  <div
+    class="mx-auto max-w-container-max border-t border-outline-variant/20 px-margin-mobile py-6 text-center md:px-margin-desktop"
+  >
+    <p class="font-label-sm text-on-surface-variant">{t('footer.copyright')}</p>
   </div>
 </footer>
-
-<style>
-  .site-footer {
-    background-color: var(--color-neutral-dark);
-    color: var(--color-neutral-300);
-    margin-top: var(--space-20);
-  }
-
-  .footer__inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--space-12);
-    padding: var(--space-16) 0 var(--space-12);
-  }
-
-  .footer__logo img {
-    height: 36px;
-    width: auto;
-    margin-bottom: var(--space-4);
-    filter: brightness(0) invert(1);
-  }
-
-  .footer__tagline {
-    font-size: var(--font-size-sm);
-    color: var(--color-neutral-400);
-    max-width: 320px;
-  }
-
-  .footer__heading {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-neutral-light);
-    margin-bottom: var(--space-4);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .footer__nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer__nav-list li {
-    margin-bottom: var(--space-2);
-  }
-
-  .footer__nav-list a,
-  .footer__contact a {
-    color: var(--color-neutral-400);
-    font-size: var(--font-size-sm);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .footer__nav-list a:hover,
-  .footer__contact a:hover {
-    color: var(--color-primary-teal-light);
-    text-decoration: none;
-  }
-
-  .footer__contact p {
-    font-size: var(--font-size-sm);
-  }
-
-  .footer__bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: var(--space-6) 0;
-  }
-
-  .footer__bottom p {
-    font-size: var(--font-size-xs);
-    color: var(--color-neutral-500);
-    text-align: center;
-  }
-
-  .footer__construction-notice {
-    background-color: rgba(255, 193, 7, 0.05);
-    border-top: 1px solid rgba(255, 193, 7, 0.2);
-    padding: var(--space-4) 0;
-  }
-
-  .footer__construction-notice p {
-    font-size: var(--font-size-xs);
-    color: var(--color-neutral-600);
-    text-align: center;
-    margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .footer__inner {
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
-      padding: var(--space-10) 0 var(--space-8);
-    }
-  }
-</style>

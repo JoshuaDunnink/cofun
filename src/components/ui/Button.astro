@@ -1,0 +1,53 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'onPrimary' | 'white';
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+  class?: string;
+  type?: 'button' | 'submit';
+  ['aria-label']?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  icon,
+  iconPosition = 'right',
+  class: className = '',
+  type = 'button',
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-lg px-8 py-4 font-label-sm text-label-sm text-center transition-all duration-200 active:scale-95';
+
+const variants: Record<string, string> = {
+  primary: 'bg-primary text-on-primary shadow-md hover:bg-primary-container hover:-translate-y-0.5',
+  secondary:
+    'bg-secondary-container text-on-secondary-container shadow-md hover:bg-secondary-fixed-dim hover:-translate-y-0.5',
+  accent: 'bg-growth-orange text-white shadow-md hover:brightness-95 hover:-translate-y-0.5',
+  ghost: 'border-2 border-primary text-primary hover:bg-primary hover:text-on-primary',
+  onPrimary:
+    'border border-white/25 bg-white/10 text-white backdrop-blur-md hover:bg-white/20',
+  white: 'bg-white text-primary shadow-md hover:bg-surface-container-low hover:-translate-y-0.5',
+};
+
+const cls = `${base} ${variants[variant]} ${className}`;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  class={cls}
+  aria-label={ariaLabel}
+>
+  {icon && iconPosition === 'left' && (
+    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">{icon}</span>
+  )}
+  <slot />
+  {icon && iconPosition === 'right' && (
+    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">{icon}</span>
+  )}
+</Tag>

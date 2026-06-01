@@ -9,212 +9,118 @@ interface Props {
 const { locale = 'nl' } = Astro.props;
 const t = useTranslations(locale);
 const navItems = getNavItems(locale);
-const switchLocale = locale === 'nl' ? 'en' : 'nl';
-const switchLabel = t('lang.switch');
 
-/* Build the switch path: strip /en prefix if present, or add it */
-const currentPath = Astro.url.pathname;
+const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => {
+  const h = href.replace(/\/+$/, '') || '/';
+  return h === rawPath;
+};
+
+/* Language switch: toggle the /en prefix while keeping the current page */
+const switchLabel = t('lang.switch');
 const switchPath =
   locale === 'nl'
-    ? `/en${currentPath}`
-    : currentPath.replace(/^\/en/, '') || '/';
+    ? `/en${rawPath === '/' ? '' : rawPath}`
+    : rawPath.replace(/^\/en/, '') || '/';
 ---
 
-<header class="site-header">
-  <div class="container header__inner">
-    <a href={getLocalePath(locale, '/')} class="header__logo" aria-label="CoFun Home">
-      <img src="/images/logo-cofun-primary.png" alt="CoFun logo" width="140" height="48" />
+<header class="sticky top-0 z-50 w-full bg-surface/95 backdrop-blur shadow-sm">
+  <nav
+    class="mx-auto flex h-20 max-w-container-max items-center justify-between px-margin-mobile md:px-margin-desktop"
+    aria-label={t('nav.menu')}
+  >
+    <a href={getLocalePath(locale, '/')} class="flex items-center gap-2" aria-label="CoFun home">
+      <img
+        src="/images/logo-cofun-primary.png"
+        alt="CoFun"
+        width="140"
+        height="40"
+        class="h-9 w-auto object-contain"
+      />
     </a>
 
-    <button class="header__menu-toggle" aria-label="Menu" aria-expanded="false" id="menu-toggle">
-      <span class="hamburger"></span>
-    </button>
-
-    <nav class="header__nav" id="main-nav" aria-label="Hoofdnavigatie">
-      <ul class="header__nav-list">
-        {navItems.map((item) => (
-          <li>
-            <a href={item.href} class:list={['header__nav-link', { active: Astro.url.pathname === item.href }]}>
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <a href={switchPath} class="header__lang-toggle" aria-label={`Switch to ${switchLabel}`}>
+    <!-- Desktop nav -->
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'font-label-sm text-label-sm transition-colors',
+              isActive(item.href)
+                ? 'border-b-2 border-secondary-fixed-dim pb-0.5 font-bold text-primary'
+                : 'text-on-surface-variant hover:text-primary',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={switchPath}
+        class="inline-flex items-center justify-center rounded-full border-2 border-primary px-3 py-1 font-label-sm text-label-sm text-primary transition-colors hover:bg-primary hover:text-on-primary"
+        aria-label={t('lang.switch.label')}
+      >
         {switchLabel}
       </a>
-    </nav>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="menu-toggle"
+      class="flex items-center justify-center rounded-lg p-2 text-on-surface-variant md:hidden"
+      aria-label={t('nav.menu')}
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-outline-variant/40 bg-surface px-margin-mobile pb-6 pt-2 md:hidden"
+  >
+    <div class="flex flex-col gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'rounded-lg px-3 py-3 font-label-sm transition-colors',
+              isActive(item.href)
+                ? 'bg-primary/10 font-bold text-primary'
+                : 'text-on-surface-variant hover:bg-surface-container',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={switchPath}
+        class="mt-2 inline-flex w-fit items-center justify-center rounded-full border-2 border-primary px-4 py-1.5 font-label-sm text-primary"
+        aria-label={t('lang.switch.label')}
+      >
+        {switchLabel}
+      </a>
+    </div>
   </div>
 </header>
 
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav = document.getElementById('main-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('is-open');
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('menu-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+      var icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = open ? 'close' : 'menu';
     });
-  }
+  })();
 </script>
-
-<style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: #fff;
-    border-bottom: 1px solid var(--color-neutral-200);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: var(--space-3);
-    padding-bottom: var(--space-3);
-  }
-
-  .header__logo img {
-    display: block;
-    height: 44px;
-    width: auto;
-  }
-
-  .header__nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-8);
-  }
-
-  .header__nav-list {
-    display: flex;
-    list-style: none;
-    gap: var(--space-6);
-    padding: 0;
-    margin: 0;
-  }
-
-  .header__nav-link {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-neutral-600);
-    text-decoration: none;
-    padding: var(--space-2) 0;
-    position: relative;
-    transition: color var(--transition-fast);
-  }
-
-  .header__nav-link:hover,
-  .header__nav-link.active {
-    color: var(--color-primary-teal);
-    text-decoration: none;
-  }
-
-  .header__nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--color-primary-teal);
-    border-radius: 1px;
-  }
-
-  .header__lang-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-1) var(--space-3);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary-teal);
-    border: 1.5px solid var(--color-primary-teal);
-    border-radius: var(--border-radius-full);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    letter-spacing: 0.05em;
-  }
-
-  .header__lang-toggle:hover {
-    background-color: var(--color-primary-teal);
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .header__menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--space-2);
-  }
-
-  .hamburger,
-  .hamburger::before,
-  .hamburger::after {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-neutral-dark);
-    border-radius: 2px;
-    transition: transform var(--transition-normal);
-  }
-
-  .hamburger {
-    position: relative;
-  }
-
-  .hamburger::before,
-  .hamburger::after {
-    content: '';
-    position: absolute;
-    left: 0;
-  }
-
-  .hamburger::before {
-    top: -7px;
-  }
-
-  .hamburger::after {
-    top: 7px;
-  }
-
-  /* Mobile */
-  @media (max-width: 768px) {
-    .header__menu-toggle {
-      display: block;
-    }
-
-    .header__nav {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background-color: #fff;
-      padding: var(--space-6);
-      border-bottom: 1px solid var(--color-neutral-200);
-      box-shadow: var(--shadow-md);
-      gap: var(--space-4);
-    }
-
-    .header__nav.is-open {
-      display: flex;
-    }
-
-    .header__nav-list {
-      flex-direction: column;
-      gap: var(--space-4);
-    }
-
-    .header__nav-link {
-      font-size: var(--font-size-base);
-    }
-  }
-</style>

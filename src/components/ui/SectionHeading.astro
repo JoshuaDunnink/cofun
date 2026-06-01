@@ -1,0 +1,40 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'center' | 'left';
+  eyebrowColor?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  align = 'center',
+  eyebrowColor = 'text-primary',
+  class: className = '',
+} = Astro.props;
+
+const wrap = align === 'center' ? 'text-center mx-auto' : 'text-left';
+const sub = align === 'center' ? 'mx-auto max-w-2xl' : 'max-w-2xl';
+---
+
+<div class:list={['space-y-4', wrap, className]}>
+  {
+    eyebrow && (
+      <span class:list={['block font-label-sm text-xs font-bold uppercase tracking-widest', eyebrowColor]}>
+        {eyebrow}
+      </span>
+    )
+  }
+  <h2 class="font-heading text-3xl font-bold text-on-background md:text-display-lg md:text-[40px] md:leading-tight">
+    {title}
+  </h2>
+  {
+    subtitle && (
+      <p class:list={['font-body-lg text-body-lg text-on-surface-variant', sub]}>{subtitle}</p>
+    )
+  }
+</div>

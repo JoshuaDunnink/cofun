@@ -1,0 +1,209 @@
+---
+import { useTranslations, getLocalePath } from '../../i18n/translations';
+import type { Locale } from '../../i18n/translations';
+import Button from '../ui/Button.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import PageHero from '../ui/PageHero.astro';
+import CTASection from '../ui/CTASection.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const p = (path: string) => getLocalePath(locale, path);
+
+const groups = [
+  {
+    title: t('curriculum.groups.12.title'),
+    subtitle: t('curriculum.groups.12.subtitle'),
+    text: t('curriculum.groups.12.text'),
+    accent: 'border-t-secondary-container',
+    icon: 'child_care',
+  },
+  {
+    title: t('curriculum.groups.345.title'),
+    subtitle: t('curriculum.groups.345.subtitle'),
+    text: t('curriculum.groups.345.text'),
+    accent: 'border-t-primary',
+    icon: 'extension',
+  },
+  {
+    title: t('curriculum.groups.678.title'),
+    subtitle: t('curriculum.groups.678.subtitle'),
+    text: t('curriculum.groups.678.text'),
+    accent: 'border-t-growth-orange',
+    icon: 'psychology',
+  },
+];
+
+const contains = [
+  { icon: 'menu_book', text: t('curriculum.contains.briefs') },
+  { icon: 'casino', text: t('curriculum.contains.games') },
+  { icon: 'map', text: t('curriculum.contains.guide') },
+];
+
+const benefits = [
+  t('curriculum.benefit.1'),
+  t('curriculum.benefit.2'),
+  t('curriculum.benefit.3'),
+  t('curriculum.benefit.4'),
+  t('curriculum.benefit.5'),
+];
+---
+
+<PageHero
+  image="/images/redesign/workspace.png"
+  badge={t('hero.curriculum.badge')}
+  title={t('hero.curriculum.title')}
+  subtitle={t('hero.curriculum.subtitle')}
+  overlay="dark-left"
+  titleColor="white"
+>
+  <div class="pt-2">
+    <Button href="#fundering" variant="primary" icon="arrow_forward">{t('hero.curriculum.cta')}</Button>
+  </div>
+</PageHero>
+
+<!-- Foundation + pillars -->
+<section id="fundering" class="bg-surface py-section-gap">
+  <div class="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <div class="mx-auto mb-16 max-w-3xl text-center">
+      <h2 class="mb-4 font-heading text-3xl font-bold text-primary md:text-display-lg md:text-[40px]">
+        {t('curriculum.foundation.title')}
+      </h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant" set:html={t('curriculum.foundation.text')} />
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+      <!-- Games -->
+      <div class="group relative overflow-hidden rounded-xl border border-outline-variant bg-white p-8 transition-shadow hover:shadow-lg md:col-span-8 reveal">
+        <div class="flex h-full flex-col items-center gap-8 md:flex-row">
+          <div class="flex-1">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+              <span class="material-symbols-outlined filled text-primary" aria-hidden="true">videogame_asset</span>
+            </div>
+            <h3 class="mb-4 font-heading text-headline-md font-semibold text-primary">{t('curriculum.games.title')}</h3>
+            <p class="mb-6 font-body-md text-on-surface-variant">{t('curriculum.games.text')}</p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-2 font-label-sm">
+                <span class="material-symbols-outlined text-success-mint" aria-hidden="true">check_circle</span>
+                {t('curriculum.games.point1')}
+              </li>
+              <li class="flex items-center gap-2 font-label-sm">
+                <span class="material-symbols-outlined text-success-mint" aria-hidden="true">check_circle</span>
+                {t('curriculum.games.point2')}
+              </li>
+            </ul>
+          </div>
+          <div class="relative h-48 w-full flex-1 md:h-full">
+            <img
+              src="/images/redesign/classroom.png"
+              alt=""
+              class="absolute inset-0 h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+              width="480"
+              height="360"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Observation -->
+      <div class="relative overflow-hidden rounded-xl bg-primary-container p-8 text-on-primary-container md:col-span-4 reveal">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/20">
+          <span class="material-symbols-outlined filled text-white" aria-hidden="true">visibility</span>
+        </div>
+        <h3 class="mb-4 font-heading text-headline-md font-semibold">{t('curriculum.observe.title')}</h3>
+        <p class="mb-6 font-body-md opacity-90">{t('curriculum.observe.text')}</p>
+        <div class="rounded-lg border border-white/20 bg-white/10 p-4">
+          <span class="font-label-sm italic">{t('curriculum.observe.quote')}</span>
+        </div>
+      </div>
+
+      <!-- Reflection -->
+      <div class="rounded-xl border border-outline-variant bg-surface-container-high p-8 md:col-span-4 reveal">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-growth-orange/10">
+          <span class="material-symbols-outlined filled text-growth-orange" aria-hidden="true">psychology</span>
+        </div>
+        <h3 class="mb-4 font-heading text-headline-md font-semibold text-secondary">{t('curriculum.reflect.title')}</h3>
+        <p class="font-body-md text-on-surface-variant">{t('curriculum.reflect.text')}</p>
+      </div>
+
+      <!-- Progress -->
+      <div class="flex flex-col justify-center rounded-xl border border-outline-variant bg-white p-8 md:col-span-8 reveal">
+        <div class="mb-8 flex items-center justify-between">
+          <div>
+            <h3 class="font-heading text-headline-md font-semibold text-primary">{t('curriculum.progress.title')}</h3>
+            <p class="font-body-md text-on-surface-variant">{t('curriculum.progress.text')}</p>
+          </div>
+          <span class="material-symbols-outlined text-4xl text-secondary" aria-hidden="true">trending_up</span>
+        </div>
+        <div class="relative mb-4 h-4 overflow-hidden rounded-full bg-surface-container">
+          <div class="absolute inset-y-0 left-0 w-[70%] rounded-full bg-gradient-to-r from-primary to-secondary-container"></div>
+        </div>
+        <div class="flex justify-between font-label-sm text-on-surface-variant">
+          <span>{t('curriculum.progress.label1')}</span>
+          <span>{t('curriculum.progress.label2')}</span>
+          <span>{t('curriculum.progress.label3')}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Age groups -->
+<section class="bg-surface-container-low py-section-gap">
+  <div class="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <div class="mb-16 text-center">
+      <SectionHeading title={t('curriculum.groups.heading')} subtitle={t('curriculum.groups.subtitle')} />
+    </div>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {
+        groups.map((g) => (
+          <div class:list={['rounded-2xl border border-outline-variant border-t-4 bg-white p-8 shadow-sm reveal', g.accent]}>
+            <span class="material-symbols-outlined mb-4 text-4xl text-primary" aria-hidden="true">{g.icon}</span>
+            <h3 class="font-heading text-headline-md font-semibold text-on-background">{g.title}</h3>
+            <p class="mb-4 font-label-sm font-bold uppercase tracking-wide text-growth-orange">{g.subtitle}</p>
+            <p class="font-body-md text-on-surface-variant">{g.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Contains + benefits -->
+<section class="py-section-gap">
+  <div class="mx-auto grid max-w-container-max grid-cols-1 gap-12 px-margin-mobile md:px-margin-desktop lg:grid-cols-2 lg:gap-16">
+    <div class="space-y-6 reveal">
+      <h2 class="font-heading text-2xl font-bold text-on-background md:text-3xl">{t('curriculum.contains.title')}</h2>
+      <ul class="space-y-4">
+        {
+          contains.map((c) => (
+            <li class="flex items-start gap-4 rounded-xl border border-outline-variant/40 bg-white p-5 shadow-sm">
+              <span class="material-symbols-outlined text-primary" aria-hidden="true">{c.icon}</span>
+              <span class="font-body-md text-on-surface">{c.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="space-y-6 reveal">
+      <h2 class="font-heading text-2xl font-bold text-on-background md:text-3xl">{t('curriculum.benefits.title')}</h2>
+      <ul class="space-y-3">
+        {
+          benefits.map((b) => (
+            <li class="flex items-start gap-3">
+              <span class="material-symbols-outlined filled mt-0.5 text-success-mint" aria-hidden="true">task_alt</span>
+              <span class="font-body-md text-on-surface-variant">{b}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<CTASection title={t('curriculum.cta.title')} text={t('curriculum.cta.text')}>
+  <Button href={p('/contact')} variant="secondary">{t('curriculum.cta.button')}</Button>
+</CTASection>

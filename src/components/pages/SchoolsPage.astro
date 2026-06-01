@@ -1,0 +1,140 @@
+---
+import { useTranslations, getLocalePath } from '../../i18n/translations';
+import type { Locale } from '../../i18n/translations';
+import Button from '../ui/Button.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import PageHero from '../ui/PageHero.astro';
+import CTASection from '../ui/CTASection.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const p = (path: string) => getLocalePath(locale, path);
+
+const valueCards = [
+  { icon: 'school', wrap: 'bg-primary-fixed', iconColor: 'text-primary', title: t('schools.value.dropout.title'), text: t('schools.value.dropout.text'), border: 'border-outline-variant' },
+  { icon: 'psychology', wrap: 'bg-secondary-container', iconColor: 'text-on-secondary-container', title: t('schools.value.gifted.title'), text: t('schools.value.gifted.text'), border: 'border-secondary' },
+  { icon: 'diversity_3', wrap: 'bg-tertiary-fixed', iconColor: 'text-tertiary', title: t('schools.value.support.title'), text: t('schools.value.support.text'), border: 'border-outline-variant' },
+];
+
+const steps = [
+  { n: '1', title: t('schools.step.1.title'), text: t('schools.step.1.text') },
+  { n: '2', title: t('schools.step.2.title'), text: t('schools.step.2.text') },
+  { n: '3', title: t('schools.step.3.title'), text: t('schools.step.3.text') },
+  { n: '4', title: t('schools.step.4.title'), text: t('schools.step.4.text') },
+];
+
+const results = [
+  t('schools.result.1'),
+  t('schools.result.2'),
+  t('schools.result.3'),
+  t('schools.result.4'),
+];
+---
+
+<PageHero
+  image="/images/redesign/classroom.png"
+  badge={t('hero.schools.badge')}
+  title={t('hero.schools.title')}
+  subtitle={t('hero.schools.subtitle')}
+  overlay="dark-bottom"
+  titleColor="white"
+  align="bottom"
+/>
+
+<!-- Why CoFun for your school -->
+<section class="py-section-gap">
+  <div class="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <div class="mb-16">
+      <SectionHeading title={t('schools.why.title')} subtitle={t('schools.why.subtitle')} />
+    </div>
+    <div class="grid grid-cols-1 gap-gutter md:grid-cols-3">
+      {
+        valueCards.map((c) => (
+          <div class:list={['rounded-xl border bg-white p-8 shadow-sm transition-shadow hover:shadow-md reveal', c.border]}>
+            <div class:list={['mb-6 flex h-12 w-12 items-center justify-center rounded-lg', c.wrap]}>
+              <span class:list={['material-symbols-outlined text-3xl', c.iconColor]} aria-hidden="true">{c.icon}</span>
+            </div>
+            <h3 class="mb-4 font-heading text-headline-md font-semibold">{c.title}</h3>
+            <p class="font-body-md text-on-surface-variant">{c.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Implementation -->
+<section class="bg-surface-container py-section-gap">
+  <div class="mx-auto grid max-w-container-max grid-cols-1 items-center gap-12 px-margin-mobile md:px-margin-desktop lg:grid-cols-2 lg:gap-16">
+    <div class="relative reveal">
+      <div class="aspect-square overflow-hidden rounded-2xl shadow-xl">
+        <img
+          src="/images/redesign/team-collaboration.png"
+          alt=""
+          class="h-full w-full object-cover"
+          width="600"
+          height="600"
+        />
+      </div>
+      <div class="glass-card absolute -bottom-6 -right-4 hidden max-w-xs rounded-xl p-6 shadow-lg md:block">
+        <p class="mb-1 font-label-sm text-primary">{t('schools.how.title')}</p>
+        <p class="font-body-md font-semibold text-on-surface">{t('schools.how.note')}</p>
+      </div>
+    </div>
+    <div>
+      <h2 class="mb-4 font-heading text-2xl font-bold text-on-background md:text-3xl">{t('schools.how.title')}</h2>
+      <p class="mb-8 font-body-lg text-body-lg text-on-surface-variant">{t('schools.how.text')}</p>
+      <div class="space-y-8">
+        {
+          steps.map((s) => (
+            <div class="flex gap-6 reveal">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white">
+                {s.n}
+              </div>
+              <div>
+                <h3 class="mb-2 font-heading text-lg font-semibold text-primary">{s.title}</h3>
+                <p class="font-body-md text-on-surface-variant">{s.text}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scientific basis + results -->
+<section class="py-section-gap">
+  <div class="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div class="flex flex-col justify-between rounded-2xl bg-inverse-surface p-8 text-white md:p-12 reveal">
+        <div>
+          <span class="material-symbols-outlined mb-4 text-4xl text-growth-orange" aria-hidden="true">analytics</span>
+          <h2 class="mb-4 font-heading text-2xl font-bold md:text-3xl">{t('schools.basis.title')}</h2>
+          <p class="prose-cofun prose-cofun--invert font-body-lg leading-relaxed text-white/80" set:html={t('schools.basis.text')} />
+        </div>
+      </div>
+      <div class="rounded-2xl border border-outline-variant bg-white p-8 md:p-12 reveal">
+        <h2 class="mb-6 font-heading text-2xl font-bold text-primary md:text-3xl">{t('schools.results.title')}</h2>
+        <ul class="space-y-5">
+          {
+            results.map((r) => (
+              <li class="flex items-start gap-4">
+                <span class="material-symbols-outlined filled mt-0.5 text-success-mint" aria-hidden="true">verified</span>
+                <span class="font-body-lg text-body-lg text-on-surface-variant">{r}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CTASection title={t('schools.cta.title')} text={t('schools.cta.text')}>
+  <Button href={p('/contact')} variant="accent">{t('schools.cta.button')}</Button>
+  <Button href={p('/lespakket')} variant="onPrimary">{t('cta.curriculum')}</Button>
+</CTASection>

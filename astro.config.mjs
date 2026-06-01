@@ -1,4 +1,6 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://cofun.nl',
@@ -13,9 +15,13 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  vite: {
-    css: {
-      preprocessorOptions: {},
-    },
-  },
+  integrations: [
+    tailwind({ applyBaseStyles: false }),
+    sitemap({
+      i18n: {
+        defaultLocale: 'nl',
+        locales: { nl: 'nl-NL', en: 'en-US' },
+      },
+    }),
+  ],
 });

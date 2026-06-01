@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="nl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CoFun | Spelend beter leren</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-blur-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(24, 28, 35, 0.8), rgba(24, 28, 35, 0.4));
+        }
+        .floating-element {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#2c4c4c",
+                        "surface-container-high": "#e5e8f3",
+                        "outline": "#6e7979",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2c3039",
+                        "on-secondary-fixed-variant": "#614000",
+                        "primary": "#006767",
+                        "outline-variant": "#bdc9c8",
+                        "secondary-fixed": "#ffddaf",
+                        "surface-tint": "#006a6a",
+                        "on-surface-variant": "#3e4949",
+                        "on-secondary-fixed": "#281800",
+                        "tertiary-fixed": "#c6e9e9",
+                        "surface-bright": "#f9f9ff",
+                        "success-mint": "#27AE60",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#734d00",
+                        "primary-fixed-dim": "#75d6d5",
+                        "secondary-fixed-dim": "#fcbb4e",
+                        "on-primary-fixed-variant": "#004f50",
+                        "inverse-on-surface": "#eef0fc",
+                        "primary-fixed": "#92f2f2",
+                        "tertiary": "#416261",
+                        "secondary": "#805600",
+                        "on-primary-fixed": "#002020",
+                        "surface-container": "#ebedf9",
+                        "surface-container-highest": "#dfe2ed",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c23",
+                        "primary-container": "#018282",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#abcdcd",
+                        "on-primary-container": "#f3fffe",
+                        "inverse-primary": "#75d6d5",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed": "#002020",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-dim": "#d7dae5",
+                        "growth-orange": "#E67E22",
+                        "surface-gray": "#F5F7F9",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#5a7a7a",
+                        "on-tertiary-container": "#f3fffe",
+                        "surface": "#f9f9ff",
+                        "on-surface": "#181c23",
+                        "secondary-container": "#ffbd52",
+                        "surface-variant": "#dfe2ed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "section-gap": "80px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 shadow-sm bg-surface">
+<nav class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
+<div class="flex items-center gap-2">
+<img alt="CoFun Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujYvjzd8ZQ_enVA6bJDNelurhcYQ5kgFjlbKo2hgh_29kdHqIABc-xJSDhNk38S1MnIGpOKlityYs8lWJQ7MaSKHTh0OSqcQXqFsZz5yoB6aC0QAUQQLu_piH5pkFDszNJu2Pp8h3KTQw7NSNqxKbHD_ec1VHpYMus09EEubIAvpP1qIEFsvG_2cN7VCvfCdxx7MGbKvl5jU0BweFcN5nMnb4ZvD4mkeCdtdusaQaKdO7furCSZG24M-q0S"/>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-primary font-bold border-b-2 border-secondary h-full flex items-center" href="#">Home</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Over ons</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Het lespakket</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Voor scholen</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-sm scale-95 active:scale-90 transition-transform hover:bg-primary-container">Login</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden p-2 text-on-surface-variant" id="mobile-menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+</header>
+<!-- Mobile Nav Menu (Hidden by default) -->
+<div class="hidden fixed inset-0 z-40 bg-surface md:hidden pt-20 px-margin-mobile" id="mobile-menu">
+<div class="flex flex-col gap-6 text-center">
+<a class="text-display-lg-mobile font-bold text-primary" href="#">Home</a>
+<a class="text-display-lg-mobile font-bold text-on-surface-variant" href="#">Over ons</a>
+<a class="text-display-lg-mobile font-bold text-on-surface-variant" href="#">Het lespakket</a>
+<a class="text-display-lg-mobile font-bold text-on-surface-variant" href="#">Voor scholen</a>
+<a class="text-display-lg-mobile font-bold text-on-surface-variant" href="#">Contact</a>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md mt-4">Login</button>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 hero-gradient z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A brightly lit, modern primary classroom setting where a group of diverse young children are collaboratively building a complex structure using vibrant, colorful geometric wooden blocks on a light wooden table. A professional female educator stands nearby with a warm, encouraging smile, observing their teamwork. The aesthetic is clean and educational with a soft, natural light-mode palette of teals, yellows, and grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv0KBR_l7jfQuzdYxfUlJSXB57FXd74QnhEk34s0oEJCqdUuAYElcLhnMZAtfnHbhBbOeLuGNvj_BDjirVNWQPpgodyV5N6TdNa3Rd7U_6-7Seaa0m38ES16nSQnln05yosUhwXjv53LuRLyG4OLYrI0HogbNM0xomY1Fy6ZjTAkUFsW9MYedkwL-Dxtr7NLIEvb8-9D8cMNAHHceJATbC86JyIwPp1vDj4YCeCdRfBIBa3Ir4hdNf0BQBjjcazFf04B7TiGTbz4FO"/>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-20 w-full">
+<div class="max-w-3xl space-y-6">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container/20 border border-secondary/30 text-secondary font-label-sm floating-element">
+<span class="material-symbols-outlined text-sm">stars</span>
+                    Bewezen methode voor basisscholen
+                </div>
+<h1 class="font-display-lg text-white md:text-display-lg text-display-lg-mobile">Spelend beter leren</h1>
+<p class="font-body-lg text-surface-container-low max-w-xl">
+                    CoFun is hét lespakket om de executieve functies van kinderen te ontwikkelen door in te zetten op de cognitieve functies.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-sm text-center shadow-lg hover:bg-primary-container transition-all hover:-translate-y-1" href="#lespakket">
+                        Ontdek het lespakket
+                    </a>
+<a class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-lg font-label-sm text-center hover:bg-white/20 transition-all" href="#aanpak">
+                        Meer over onze aanpak
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: The Challenge -->
+<section class="py-section-gap bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative rounded-3xl overflow-hidden shadow-2xl group">
+<img class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A pensive young student sitting at a classroom desk looking out of a large window with a thoughtful expression, representing the quiet challenge of gifted children who feel disconnected from traditional learning. The scene is bathed in soft, high-key natural light with a palette of muted blues and warm wood tones, creating a sense of empathy and professional educational concern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByE0kWau-PiUHyZxfFap7Q9LHBZxLwqkh8vlHOYAnS23Wx6p_-Dg4WXgxYFVRM3RKVXT5EGzeb24oI_5zDFD_pm7YhX6VjJTcWc6aVU6VTABPg7nJpokY46siNYz4o7Q8uDDCR9d0YhmH7HqJRvRLQcxvuo4ZJPP-6Yq0VokVlZrvOm0vyQiJxSyb-8tp85OtVjAfhghwe3HsME8sx8C2jazJj5YhlbEqv1aVn119caYXRTLMFOXEMvdz2cDcsVJmbiMGV5f3rJfT7"/>
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/90 backdrop-blur-sm rounded-2xl border-l-4 border-error">
+<p class="font-label-sm text-on-surface-variant italic">
+                            "Mijn leerlingen hebben het potentieel, maar de motivatie ontbreekt vaak..."
+                        </p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="space-y-4">
+<span class="text-primary font-bold tracking-widest uppercase text-xs">De Uitdaging</span>
+<h2 class="font-display-lg text-on-background text-3xl md:text-4xl">Het probleem herkennen</h2>
+</div>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                        (Hoogbegaafde) leerlingen die vastlopen in het onderwijs vormen een groeiende uitdaging. Ze presteren onder hun niveau, verliezen motivatie of vallen stil. 
+                    </p>
+<div class="p-8 bg-white border border-outline-variant rounded-2xl shadow-sm">
+<p class="text-primary font-bold text-xl leading-relaxed">
+                            "Inzetten op executieve functies werkt pas als de onderliggende cognitieve functies goed ontwikkeld zijn."
+                        </p>
+</div>
+<p class="font-body-md text-on-surface-variant">
+                        Niet omdat ze het niet kunnen, maar omdat de juiste aansluiting ontbreekt. Bij CoFun pakken we dit bij de wortel aan.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: The Solution -->
+<section class="py-section-gap overflow-hidden" id="aanpak">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-16">
+<h2 class="font-display-lg text-on-background mb-4">Onze Oplossing</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                CoFun biedt een bewezen lespakket dat spelenderwijs de cognitieve en executieve functies van leerlingen versterkt.
+            </p>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Step 1 -->
+<div class="relative p-10 bg-white rounded-[2rem] border border-outline-variant hover:border-primary transition-all group shadow-sm">
+<div class="w-16 h-16 bg-secondary-container rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:rotate-6">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" style="font-variation-settings: 'FILL' 1;">videogame_asset</span>
+</div>
+<h3 class="font-headline-md mb-4">Spel</h3>
+<p class="font-body-md text-on-surface-variant">
+                        We gebruiken geselecteerde spellen als diagnostisch en therapeutisch middel om leerlingen weer in beweging te krijgen.
+                    </p>
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">1</div>
+</div>
+<!-- Step 2 -->
+<div class="relative p-10 bg-white rounded-[2rem] border border-outline-variant hover:border-primary transition-all group shadow-sm">
+<div class="w-16 h-16 bg-tertiary-fixed rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:rotate-6">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant text-3xl" style="font-variation-settings: 'FILL' 1;">visibility</span>
+</div>
+<h3 class="font-headline-md mb-4">Observatie</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Leerkrachten leren kijken naar het leerproces in plaats van alleen het resultaat, waardoor blokkades zichtbaar worden.
+                    </p>
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">2</div>
+</div>
+<!-- Step 3 -->
+<div class="relative p-10 bg-white rounded-[2rem] border border-outline-variant hover:border-primary transition-all group shadow-sm">
+<div class="w-16 h-16 bg-primary-fixed-dim rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:rotate-6">
+<span class="material-symbols-outlined text-on-primary-fixed-variant text-3xl" style="font-variation-settings: 'FILL' 1;">psychology_alt</span>
+</div>
+<h3 class="font-headline-md mb-4">Reflectie</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Door gerichte reflectie krijgen leerlingen inzicht in hun eigen denkstappen en bouwen ze zelfvertrouwen op.
+                    </p>
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">3</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Features Grid (Bento Style) -->
+<section class="py-section-gap bg-surface-gray">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16 space-y-4">
+<h2 class="font-display-lg text-on-background">Waarom CoFun werkt</h2>
+<p class="text-primary font-bold">De kracht van wetenschappelijk onderbouwd spel</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+<!-- Feature 1 -->
+<div class="md:col-span-7 bg-white rounded-3xl p-8 shadow-sm border border-outline-variant flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">extension</span>
+<h3 class="font-headline-md mb-2">Spelend leren</h3>
+<p class="font-body-md text-on-surface-variant max-w-md">Kinderen leren het best door te doen. Ons lespakket gebruikt spel als krachtig middel om cognitieve functies te ontwikkelen.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-1/3 opacity-10 group-hover:scale-110 transition-transform group-hover:opacity-20">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">toys</span>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-5 bg-primary text-on-primary rounded-3xl p-8 shadow-sm flex flex-col justify-center">
+<span class="material-symbols-outlined text-4xl mb-4">lightbulb</span>
+<h3 class="font-headline-md mb-2 text-white">Inzicht in denken</h3>
+<p class="font-body-md text-primary-fixed leading-relaxed">Door te observeren en te reflecteren krijgen leerkrachten inzicht in de diepere denkprocessen van hun leerlingen.</p>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-5 bg-secondary-container rounded-3xl p-8 shadow-sm flex flex-col justify-end">
+<h3 class="font-headline-md mb-2 text-on-secondary-container">Groei van binnenuit</h3>
+<p class="font-body-md text-on-secondary-fixed-variant">We werken aan het fundament. Door de basisfuncties te versterken, ontstaat ruimte voor hogere executieve vaardigheden.</p>
+<span class="material-symbols-outlined text-4xl mt-4 text-on-secondary-container">trending_up</span>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-7 bg-white rounded-3xl p-8 shadow-sm border border-outline-variant flex items-center gap-8 overflow-hidden group">
+<div class="flex-1">
+<h3 class="font-headline-md mb-2">Verbinding maken</h3>
+<p class="font-body-md text-on-surface-variant">CoFun creëert een veilige omgeving waarin kinderen weer durven, willen en kunnen leren in een vertrouwde setting.</p>
+</div>
+<div class="hidden md:block w-32 h-32 bg-surface-container rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-5xl">groups</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer CTA -->
+<section class="py-section-gap">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="bg-primary-container rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+<!-- Background Decoration -->
+<div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
+<div class="relative z-10 max-w-2xl mx-auto space-y-8">
+<h2 class="font-display-lg text-white">Klaar om het verschil te maken?</h2>
+<p class="font-body-lg text-primary-fixed leading-relaxed">
+                        Ontdek hoe CoFun uw school kan ondersteunen bij het begeleiden van hoogbegaafde leerlingen en het versterken van leerprocessen.
+                    </p>
+<div class="flex justify-center">
+<a class="bg-secondary text-on-secondary px-12 py-5 rounded-xl font-headline-md shadow-xl hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:scale-105 active:scale-95" href="#contact">
+                            Neem contact op
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full pt-section-gap pb-base">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter mb-16">
+<div class="col-span-1 md:col-span-1 space-y-4">
+<img alt="CoFun Logo" class="h-10 opacity-80 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida/ADBb0ujYvjzd8ZQ_enVA6bJDNelurhcYQ5kgFjlbKo2hgh_29kdHqIABc-xJSDhNk38S1MnIGpOKlityYs8lWJQ7MaSKHTh0OSqcQXqFsZz5yoB6aC0QAUQQLu_piH5pkFDszNJu2Pp8h3KTQw7NSNqxKbHD_ec1VHpYMus09EEubIAvpP1qIEFsvG_2cN7VCvfCdxx7MGbKvl5jU0BweFcN5nMnb4ZvD4mkeCdtdusaQaKdO7furCSZG24M-q0S"/>
+<p class="font-body-md text-on-surface-variant">Spelend beter leren voor elke hoogbegaafde leerling.</p>
+<div class="flex gap-4">
+<a class="text-primary hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-primary hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined">call</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-on-surface">Navigatie</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Home</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Over ons</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Het lespakket</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Voor scholen</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-on-surface">Contact</h4>
+<p class="text-on-surface-variant">info@cofun.nl</p>
+<div class="p-4 bg-white/50 rounded-xl border border-outline-variant/30 flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">construction</span>
+<p class="text-xs text-on-surface-variant">Website in aanbouw. Meer content op komst.</p>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline-md text-on-surface">Juridisch</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacybeleid</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Algemene Voorwaarden</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop border-t border-outline-variant/20 pt-8 pb-4 text-center">
+<p class="font-label-sm text-on-surface-variant">© 2024 CoFun. Spelend beter leren. Alle rechten voorbehouden.</p>
+</div>
+</footer>
+<script>
+        // Simple Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            document.body.classList.toggle('overflow-hidden');
+            const icon = btn.querySelector('.material-symbols-outlined');
+            icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+        });
+
+        // Add reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>
