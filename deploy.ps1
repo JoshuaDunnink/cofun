@@ -1,5 +1,7 @@
 param(
   [switch]$SetupCredentials,
+  [switch]$Build,
+  [switch]$SkipBuild,
   [string]$FtpHost = $env:FTP_HOST,
   [string]$RemoteDir = $env:FTP_REMOTE_DIR,
   [string]$CredentialPath = (Join-Path $env:LOCALAPPDATA 'CoFun\deploy-ftp.cred.xml')
@@ -88,10 +90,34 @@ $credential = Get-DeployCredential -Path $CredentialPath
 $username = $credential.UserName
 $password = $credential.GetNetworkCredential().Password
 
-Write-Host '==> Building site...'
-& npm run build
-if ($LASTEXITCODE -ne 0) {
-  exit $LASTEXITCODE
+if ($Build -and $SkipBuild) {
+  throw 'Use either -Build or -SkipBuild, not both.'
+}
+
+$distIndexPath = 'dist\index.html'
+
+if ($Build) {
+  Write-Host '==> Building site...'
+  & npm run build
+  if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+  }
+}
+elseif ($SkipBuild) {
+  Write-Host '==> Skipping build; deploying existing dist output.'
+  if (-not (Test-Path $distIndexPath)) {
+    throw 'dist\index.html not found. Run npm run build first (or run deploy without -SkipBuild).'
+  }
+}
+elseif (Test-Path $distIndexPath) {
+  Write-Host '==> Using existing dist output (matches what preview serves).'
+}
+else {
+  Write-Host '==> dist output not found; building site...'
+  & npm run build
+  if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+  }
 }
 
 $winscpExecutable = $null

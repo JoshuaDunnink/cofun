@@ -40,6 +40,7 @@ De site is beschikbaar op `http://localhost:4321`.
 | `npm run dev`     | Start de lokale ontwikkelserver  |
 | `npm run build`   | Bouw de site voor productie      |
 | `npm run preview` | Preview de productiebuild lokaal |
+| `npm run deploy:preview` | Forceer deploy van bestaande `dist/` build (zonder bouwen) |
 | `npm run deploy:setup` | Sla FTP-credentials versleuteld op in je Windows-profiel |
 | `npm run deploy`  | Deploy via PowerShell + WinSCP   |
 | `npm run deploy:cmd` | Deploy via CMD wrapper          |
@@ -118,7 +119,7 @@ De workflow:
 1. Checkout code
 2. Installeert dependencies
 3. Bouwt de site
-4. Uploadt `dist/` naar `/httpdocs/` op Strato
+4. Uploadt `dist/` naar `/cofun/cofun/__development/` op Strato
 
 ### Handmatig op Windows (aanbevolen)
 
@@ -140,6 +141,14 @@ npm run deploy:setup
 
 ```powershell
 npm run deploy
+```
+
+`npm run deploy` gebruikt standaard de bestaande `dist/` output (dus exact wat je met `npm run preview` ziet). Alleen als `dist/` ontbreekt, wordt automatisch eerst gebouwd.
+
+Als je exact dezelfde build wilt deployen als je met `npm run preview` bekijkt, gebruik:
+
+```powershell
+npm run deploy:preview
 ```
 
 Of vanuit Command Prompt:

@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1",
+    "deploy:preview": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1 -SkipBuild",
     "deploy:setup": "powershell -NoProfile -ExecutionPolicy Bypass -File ./deploy.ps1 -SetupCredentials",
     "deploy:cmd": "deploy.cmd",
     "astro": "astro",
