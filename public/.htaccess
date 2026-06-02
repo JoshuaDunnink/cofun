@@ -1,0 +1,26 @@
+# Cache control for CoFun website
+
+# HTML pages: always revalidate so new deployments are seen immediately
+<FilesMatch "\.(html|htm)$">
+  Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+
+# Hashed assets (Astro fingerprints these — safe to cache forever)
+<FilesMatch "\.(css|js)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Images: cache for 7 days
+<FilesMatch "\.(png|jpg|jpeg|gif|svg|webp|ico)$">
+  Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+
+# Fonts: cache for 1 year
+<FilesMatch "\.(woff|woff2|ttf|eot)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Sitemaps: revalidate (updated on each build)
+<FilesMatch "\.(xml)$">
+  Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
