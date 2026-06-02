@@ -159,6 +159,7 @@ export const translations = {
     "about.role.schools.title": "Schoolbegeleiders",
     "about.role.schools.text":
       "Ondersteunen teams bij de implementatie in de klas.",
+    "about.team.placeholder": "Binnenkort beschikbaar",
 
     /* ── About — CTA ─────────────────────────────────────────────────── */
     "about.cta.title": "Klaar om samen te groeien?",
@@ -464,6 +465,7 @@ export const translations = {
     "about.role.schools.title": "School coaches",
     "about.role.schools.text":
       "Support teams with implementation in the classroom.",
+    "about.team.placeholder": "Coming soon",
 
     /* ── About — CTA ─────────────────────────────────────────────────── */
     "about.cta.title": "Ready to grow together?",
