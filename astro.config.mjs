@@ -3,8 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://cofun.nl/cofun/__development/',
-  base: '/cofun/__development/',
+  site: 'https://cofun.nl/',
+  base: '/',
   output: 'static',
   build: {
     assets: '_assets',
